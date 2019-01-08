@@ -17,14 +17,6 @@ $ cd vi
 $ make deploy
 ```
 
-## Change Git origin URL
-
-Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
-
-```bash
-$ git remote set-url origin git@github.com:codepilot/glasfluegel-viur.git
-```
-
 ## Install prerequisites
 
 To install prerequisites, once do
