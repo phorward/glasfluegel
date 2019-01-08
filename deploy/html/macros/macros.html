@@ -1,0 +1,27 @@
+{% macro image(src, title = None, group = None, copyright = None, alt = None, align="right", size=250, crop=False) %}
+<div class="image image-{{align}}">
+	<a href="{{src}}=s1024" data-lightbox="{{group if group else src}}" data-title="{{title}}">
+		<img src="{{src}}{{ "=s%d" % size if size }}{{ "-c" if crop }}" />
+	</a>
+    {% if title %}
+	<div>{{title}}</div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro gallery(images, title = None, group = None, copyright = None, size=270) %}
+<div class="gallery">
+	{% for src in images %}
+		<a href="{{src}}=s1024" data-lightbox="{{group if group else src}}" data-title="{{title}}">
+			<img src="{{src}}{{ "=s%d" % size if size }}" />
+		</a>
+	{% endfor %}
+    {% if title %}
+	<div>{{title}}</div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro headline(title, class = None) %}
+<h2 style="clear:both;" class="{{ class if class }}">{{title}}</h2>
+{% endmacro %}
