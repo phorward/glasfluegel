@@ -1,7 +1,7 @@
 {
-  "name": "{{app_id}}",
+  "name": "glasfluegel-viur",
   "version": "1.0.0",
-  "description": "{{app_id}}",
+  "description": "glasfluegel-viur",
   "scripts": {
     "setup": "npm install gulp -g && npm i -g gulp-cli && npm install",
     "checkUpdates": "npm-check-updates -u && npm install",

@@ -1,0 +1,21 @@
+{% from "macros/macros.html" import image, gallery, headline %}
+
+{% for entry in getList("news", **{"active":"1", "orderby": "creationdate", "orderdir":"1"}) or [] %}
+
+	{{ headline("%s: %s" % (entry["creationdate"].strftime(format="%d.%m.%Y"), entry["headline"]), "news-entry") }}
+
+	<p class="news-entry">
+		{% if entry["images"] and entry["images"]|length == 1 %}
+			{{ image(entry["images"][0]["servingurl"]) }}
+		{% endif %}
+
+		{{ entry["content"] }}
+	</p>
+
+	{% if entry["images"] and entry["images"]|length > 1 %}
+		{% for pic in entry["images"] %}
+			{{ image(pic["servingurl"], crop=True) }}
+		{% endfor %}
+	{% endif %}
+
+{% endfor %}

@@ -1,12 +1,3 @@
-/*
- * Universal AJAX pagination script for ViUR
- * -----------------------------------------
- *
- * This script serves a universal pagination script to be used by ViUR, which uses JQuery to
- * access DOM elements. The script evolved from a view customer projects we performed and will
- * be extended, enhanced and improved from time to time.
- */
-
 // Pagination for Lists
 var allcursors = [];
 var activerequest = false;
@@ -46,7 +37,7 @@ $(document).ready( function()
 
 			for( i = 0; i < hashes.length; i++ )
 			{
-				hash = hashes[i].split("=");
+				hash = hashes[i].split('=');
 
 				if( hash.length == 2 )
 					params[ hash[0] ] = hash[1];

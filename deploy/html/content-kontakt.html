@@ -1,0 +1,121 @@
+{% from "macros/macros.html" import image, gallery, headline %}
+
+{% for contact in getList("user", **{"contact": True, "orderby": "sortindex"}) or [] %}
+    <div class="image image-left">
+        {% if contact["photo"] %}
+            <img src="{{contact["photo"]["servingurl"]}}=s200-c" />
+        {% endif %}
+
+        <div><strong>{{ contact["display_name"] }}</strong><br />
+        {{ contact["tasks"] }}</div>
+    </div>
+{% endfor %}
+
+<br style="clear: both;" />
+
+<form id="formmailer">
+    <p>
+        Wenn du uns eine Nachricht zukommen lassen möchtest oder Fragen hast, benutze bitte das nachfolgende
+        Kontaktformular. Wir werden uns so schnell wie möglich bei dir melden!
+    </p>
+
+    <input type="hidden" name="skey" value="{{ getSecurityKey() }}" />
+
+    <div class="form-group">
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="form_email">E-Mail *</label>
+            <input id="form_email" type="text" name="email" required />
+        </div>
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="form_descr">Nachricht *</label>
+            <textarea id="form_descr" type="text" name="descr" required></textarea>
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="form_privacy" style="width: auto;">
+                <input type="checkbox" id="form_privacy" required name="privacy_confirm" style="width: initial;">
+                Ich bin damit einverstanden, dass meine angegebenen Daten zum Zwecke der Bearbeitung der Anfrage gespeichert und weiterverarbeitet werden dürfen. Eine Übermittlung meiner Daten an Dritte findet nicht statt.
+            </label>
+        </div>
+    </div>
+
+    <div class="errormessage" style="color: red; display: none;"></div>
+
+    <img id="formloader2" src="/static/images/loading.gif" style="display: none;">
+    <input type="submit" value="Absenden" class="submitbtn" />
+</form>
+
+<div id="formmailersuccess"  class="formsuccess"  style="display: none;">
+    <p style="text-align: center;"><strong>Vielen Dank!</strong></p>
+
+    <p>Deine Nachricht wurde an uns übermittelt. Wir melden uns zeitnah bei dir.</p>
+</div>
+
+
+{{ headline("Impressum") }}
+
+<p>
+    Angaben gemäß § 5 TMG<br /><br />
+
+    <strong>Jan Max Meyer</strong><br />
+    Köttersweg 16<br />
+    58239 Schwerte<br /><br />
+
+    Tel. 02304 3078923 (nur im Sinne §5 TMG)<br />
+    Mail. jm-AT-glasfluegel.net
+
+	<a style="float: right;" href="https://www.viur.is" target="_blank">
+		<img src="/static/images/viur_logo.png" title="Diese Webseite ist ein ViUR Informationssystem" />
+	</a>
+
+    <br /><br />
+    Design &amp; Realisation:<br />
+
+    <strong>Jan Max Meyer / Mausbrand Informationssysteme GmbH, Dortmund</strong><br />
+    <a href="https://www.mausbrand.de" target="_blank">www.mausbrand.de</a><br />
+
+	<br />
+    Text &amp; Fotomaterial:<br />
+    <strong>Philipp Kretschmann, Eberhard Stützel, Hansjörg Streifeneder, Jan Max Meyer, u. a.</strong>
+
+</p>
+
+<hr />
+
+<h3 class="accordion-toggler" data-for-accordion="haftung">
+    <span class="plus"></span>
+    Haftungsausschluß
+</h3>
+
+<div id="haftung" style="display: none;">
+
+<p><strong>1. Inhalt des Onlineangebotes:</strong> Der Autor übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen, sofern seitens des Autors kein nachweislich vorsätzliches oder grob fahrlässiges Verschulden vorliegt. Alle Angebote sind freibleibend und unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</p>
+
+<p><strong>2. Verweise und Links:</strong> Bei direkten oder indirekten Verweisen auf fremde Internetseiten ("Links"), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern. Der Autor erklärt hiermit ausdrücklich, dass zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der gelinkten/verknüpften Seiten hat der Autor keinerlei Einfluss. Deshalb distanziert er sich hiermit ausdrücklich von allen Inhalten aller gelinkten /verknüpften Seiten, die nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in vom Autor eingerichteten Gästebüchern, Diskussionsforen und Mailinglisten. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.</p>
+
+<p><strong>3. Urheber- und Kennzeichenrecht:</strong> Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen. Alle innerhalb des Internetangebotes genannten und ggf. durch Dritte geschützten Marken- und Warenzeichen unterliegen uneingeschränkt den Bestimmungen des jeweils gültigen Kennzeichenrechts und den Besitzrechten der jeweiligen eingetragenen Eigentümer. Allein aufgrund der bloßen Nennung ist nicht der Schluß zu ziehen, dass Markenzeichen nicht durch Rechte Dritter geschützt sind! Das Copyright für veröffentlichte, vom Autor selbst erstellte Objekte bleibt allein beim Autor der Seiten. Eine Vervielfältigung oder Verwendung solcher Grafiken, Tondokumente, Videosequenzen und Texte in anderen elektronischen oder gedruckten Publikationen ist ohne ausdrückliche Zustimmung des Autors nicht gestattet.</p>
+
+<p><strong>4. Datenschutz:</strong> Sofern innerhalb des Internetangebotes die Möglichkeit zur Eingabe persönlicher oder geschäftlicher Daten (Emailadressen, Namen, Anschriften) besteht, so erfolgt die Preisgabe dieser Daten seitens des Nutzers auf ausdrücklich freiwilliger Basis.</p>
+
+<p><strong>5. Rechtswirksamkeit dieses Haftungsausschlusses:</strong> Dieser Haftungsausschluss ist als Teil des Internetangebotes zu betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht, nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.</p>
+
+</div>
+
+<h3 class="accordion-toggler" data-for-accordion="datenschutz">
+    <span class="plus"></span>
+    Datenschutzhinweis
+</h3>
+
+<div id="datenschutz" style="display: none;">
+<p>Bei jedem Zugriff auf diese Webseite und bei jedem Abruf einer Datei werden zu statistischen Zwecken und zur Fehlersuche folgende Daten protokolliert und ausgewertet: Datum und Uhrzeit, IP-Adresse, abgerufene Datei (Zugriffsadresse), HTTP-Statuscode, Umfang der übermittelten Daten, Browsertyp.
+</ul>
+
+<p>Sämtliche auf dieser Homepage oder per E-Mail übermittelte, personenbezogene Daten werden ausschließlich zweckgebunden verwendet, und keinesfalls an Dritte weitergegeben.</p>
+
+<p>Über diese Website gesetzte Cookies dienen ausschließlich dem Zwecke, die Verwendung der Website zu vereinfachen und Informationen schneller bereitzustellen. Eine Analyse des Surfverhaltens oder ähnliches findet nicht statt.</p>
+
+
+</div>

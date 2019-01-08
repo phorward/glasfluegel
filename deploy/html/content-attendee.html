@@ -1,0 +1,17 @@
+<p>Für das GLASFLÜGEL FlyIn 2016 waren {{ appconf["total_persons"] }} Teilnehmer
+    und {{ appconf["total_aircraft"] }} Flugzeuge gemeldet!</p>
+
+{% set skellist = getList("reg", **{"amount":64, "visible": "1", "aircraft": "1", "aircraft_ignore": "0",
+                                    "orderby": "creationdate", "orderdir": "1"}) or [] %}
+
+<table class="glasfluegel">
+	<tr>
+        <th>Bild</th>
+        {# DSGVO 2018 <th>Name</th>#}
+        <th>Typ</th>
+        <th>Kennzeichen</th>
+    </tr>
+    {%- include "reg_list_next.html" -%}
+</table>
+
+</div>

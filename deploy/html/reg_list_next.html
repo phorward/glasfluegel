@@ -1,0 +1,67 @@
+{% from "macros/macros.html" import image %}
+
+{% for entry in skellist %}
+    {% if loop.last %}
+    <tr class="js-listcursor"
+        data-cursor="{{ skellist.cursor }}"
+        data-module="reg"
+        data-param0="amount=64"
+        data-param1="visible=1"
+        data-param2="aircraft=1"
+        data-param3="aircraft_ignore=0"
+        data-param4="orderby=creationdate"
+        data-param5="orderdir=1">
+    {% else %}
+
+
+
+    <tr>
+    {% endif %}
+        <td>
+            {% if entry["aircraft"] and entry["aircraft_pic"] and entry["aircraft_pic_ok"] %}
+                {{ image(entry["aircraft_pic"]["servingurl"], group="dabei", size=200, align="left", crop=True) }}
+            {% else %}
+                <div class="image image-left">
+                    <img src="/static/images/nopicture.jpg" title="Kein Bild hinterlegt" alt="Kein Bild hinterlegt" />
+                </div>
+            {% endif %}
+        </td>
+
+        {# DSGVO 2018
+        {% if not entry["aircraft"] or entry["aircraft_ignore"] %}
+        <td colspan="3">
+        {% else %}
+        <td>
+        {% endif %}
+            {% if entry["viewname"] %}
+                {{ entry["viewname"] }}
+            {% else %}
+                {{ entry["firstname"] }} {{ entry["lastname"] }}
+            {% endif %}
+            {% if entry["persons"] > 1 %}
+                <sub>mit {{ entry["persons"] }} Personen</sub>
+            {% endif %}
+
+            {% if entry["club"] %}
+                <br />
+                <i>{{ entry["club"] }}</i>
+            {% endif %}
+        </td>
+        #}
+
+        {% if entry["aircraft"] and not entry["aircraft_ignore"] %}
+        <td>{{ entry["aircraft_type"] }}
+            {% if entry["aircraft_werkno"] and entry["aircraft_bj"] %}
+                <br />
+                <i>Werk-Nr. {{ entry["aircraft_werkno"] }}, Baujahr {{ entry["aircraft_bj"] }}</i>
+            {% endif %}
+        </td>
+        <td>{{ entry["aircraft_reg"] }}
+
+            {% if entry["aircraft_wb"] %}
+                <strong>{{ entry["aircraft_wb"] }}</strong>
+            {% endif %}
+        </td>
+        {% endif %}
+    </tr>
+{% endfor %}

@@ -1,0 +1,238 @@
+{% from "macros/macros.html" import image, headline %}
+
+<p>Die Anmeldung für den Glasflügel CUP 2019 ist ab Januar 2019 möglich!</p>
+
+{#
+<p>In diesem Bereich kannst Du dich für das <strong>Glasflügel FlyIn 2016</strong> offiziell anmelden.</p>
+
+<p>Es ist dabei egal, ob du mit Flugzeug kommst oder einfach nur aus Interesse am Thema Glasflügel teilnehmen möchtest - Jeder ist bei uns Willkommen! Wir benötigen deine Anmeldung, um das FlyIn sowie den Flugbetrieb besser planen zu können. Auch wenn du oder ihr nicht das ganze Wochenende kommen könnt, hinterlasse bitte eine Anmeldung mit entsprechender Bemerkung. Auch was die Kosten angeht, kann man über alles reden.</p>
+
+<p>Wir freuen uns auf Euch!</p>
+
+<!-- SECTION ------------------------------------------------------------------>
+
+<h2>
+    Unkostenpauschale
+</h2>
+
+<p>Das FlyIn ist natürlich eine Veranstaltung von Fliegern für Flieger. Um aber unsere eigenen Aufwandskosten für das FlyIn decken zu können - dies betrifft vor allem den Samstagabend mit der großen Glasflügel-Party - erheben wir eine kleine Organisationspauschale von 25€ für jedes angemeldete Segelflugzeug. Campinggebühren oder Kosten für Strom fallen nicht an.</p>
+
+<p>Hinzu kommt noch eine kleine Unkostenpauschale pro Person für die Verpflegung (Essen, Getränke) am Samstagabend. Dies werden wir bekanntgeben, sobald uns entsprechend viele Anmeldungen vorliegen, um besser planen zu können.</p>
+
+<p>Die Startgebühr/Schleppgebühr für entsprechenden Windenstarts oder F-Schlepps am Flugplatz EDTU sind an die dort ansässige Fliegergruppe bzw. an die  F-Schlepp-Piloten zu entrichten.</p>
+
+
+<!-- SECTION ------------------------------------------------------------------>
+<h2>
+    Hinweis zum Flugbetrieb
+</h2>
+
+<p>Ganz allgemein gilt: Augen auf, sich bei der Flugleitung anmelden (Freq, RWY etc. siehe AIP) und mit Hirn und Vernunft sich in die Platzrunde einfädeln. Bitte geht kein Risiko ein – dies ist kein Wettbewerb bei dem es etwas zu gewinnen gibt. Hierzu zu einem späteren Zeitpunkt mehr.</p>
+
+<p>Es ist festzuhalten, dass jeder für die Einhaltung der gesetzlichen Anforderungen selber verantwortlich ist. Wir werden keine Papiere überprüfen, es kann natürlich aber sein, dass die Aufsichtsbehörde solche Kontrollen durchführt.</p>
+
+<p style="color:red;"><strong>Die genaue Landeprozedur am Flugplatz EDTU wird noch auf dieser Homepage veröffentlicht!</strong></p>
+
+<!-- SECTION ------------------------------------------------------------------>
+
+{{ headline("Anmeldeformular") }}
+
+<form id="regform">
+    <p>Bitte nutze dieses Anmeldeformular, um dich am FlyIn anzmelden!</p>
+
+    <input type="hidden" name="skey" value="{{ getSecurityKey() }}" />
+
+    <div class="form-group">
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_title">Anrede</label>
+            <div id="reg_title">
+                <input id="reg_title_frau" type="radio" name="title" value="f" checked="">
+                <label for="reg_title_frau">Frau</label>
+                <br />
+                <input id="reg_title_herr" type="radio" name="title" value="m">
+                <label for="reg_title_herr">Herr</label>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_firstname">Vorname *</label>
+            <input id="reg_firstname" type="text" name="firstname" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_lastname">Nachname *</label>
+            <input id="reg_lastname" type="text" name="lastname" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_club">Heimatverein</label>
+            <input id="reg_club" type="text" name="club" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_city">Heimatstadt</label>
+            <input id="reg_city" type="text" name="city" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_email">E-Mail *</label>
+            <input id="reg_email" type="text" name="email" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_phone">Telefon</label>
+            <input id="reg_phone" type="text" name="phone" />
+        </div>
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_persons">Wie viele Personen seid ihr?</label>
+            <select id="reg_persons" name="persons">
+                {% for i in [1, 2, 3, 4, 5, 6, 7, 8, 9] %}
+                    <option value="{{ i }}" {{ 'selected="selected"' if i == 1 }}>{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_camping">Camping</label>
+            <div id="reg_camping">
+                <input id="reg_camping_no" type="radio" name="camping" value="0" checked="">
+                <label for="reg_camping_no">Nein, ich/wir übernachten nicht oder ausserhalb.</label>
+                <br />
+                <input id="reg_camping_yes" type="radio" name="camping" value="1">
+                <label for="reg_camping_yes">Ja</label><br />
+            </div>
+        </div>
+
+        <div class="optional-section" id="camping_section">
+            <!--
+            <p>
+                Für das Camping steht Strom? bereit
+                Kosten???
+            </p>
+            -->
+
+            <div class="formfield">
+                <label for="reg_camping_kind">Wo schläfst du / schlaft ihr?</label>
+                <div id="reg_camping_kind">
+                    <input id="reg_camping_kind_tent" type="radio" name="camping_kind" value="tent" checked="">
+                    <label for="reg_camping_kind_tent">Zelt</label>
+                    <br />
+                    <input id="reg_camping_kind_caravan" type="radio" name="camping_kind" value="caravan">
+                    <label for="reg_camping_kind_caravan">Wohnmobil / Wohnwagen</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_aircraft">Flugzeug</label>
+            <div id="reg_aircraft">
+                <input id="reg_aircraft_no" type="radio" name="aircraft" value="0" checked="">
+                <label for="reg_aircraft_no">Nein</label>
+                <br />
+                <input id="reg_aircraft_yes" type="radio" name="aircraft" value="1">
+                <label for="reg_aircraft_yes">Ja</label><br />
+            </div>
+        </div>
+
+        <div class="optional-section" id="aircraft_section">
+            <p>
+                Bitte gib uns ein paar genauere Informationen über dein Flugzeug, und wie du
+                zu uns findest. Wenn du ein Foto hochlädst, würden wir dieses nach vorheriger
+                Prüfung gerne hier auf der Homepage veröffentlichen.<br />
+                Achte bei dem Foto bitte darauf, dass dein Flieger möglichst mittig abgebildet ist.
+                Der Veröffentlichung deines Fotos kannst du jederzeit wiedersprechen.
+                Das Recht am Bild verbleibt bei dir.
+            </p>
+
+            <p>Es ist festzuhalten, dass jeder für die Einhaltung der gesetzlichen Anforderungen selber verantwortlich ist. Wir werden keine Papiere überprüfen, es kann natürlich aber sein, dass die Aufsichtsbehörde solche Kontrollen durchführt.</p>
+
+            <div class="formfield">
+                <label for="reg_aircraft_type">Flugzeugtyp *</label>
+                <input id="reg_aircraft_type" type="text" name="aircraft_type" placeholder="" />
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_reg">Kennzeichen *</label>
+                <input id="reg_aircraft_reg" type="text" length="8" name="aircraft_reg" />
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_wb">WB-Kennzeichen</label>
+                <input id="reg_aircraft_wb" type="text" length="3" name="aircraft_wb" />
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_bj">Baujahr</label>
+                <input id="reg_aircraft_bj" type="numeric" length="4" name="aircraft_bj" />
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_werkno">Werk-Nr.</label>
+                <input id="reg_aircraft_werkno" type="numeric" length="3" name="reg_aircraft_werkno" />
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_pic_div">Foto</label>
+                <div id="reg_aircraft_pic_div">
+                    <input id="reg_aircraft_pic" name="aircraft_pic" type="hidden" value="" />
+                    <input id="reg_aircraft_pic_uploader" type="file" accept="image/*" />
+                    <img id="reg_aircraft_pic_loader" src="/static/images/loading.gif" style="display: none;">
+                    <br />
+                    <img id="reg_aircraft_pic_preview" src="" style="display: none;"/>
+                </div>
+            </div>
+
+            <div class="formfield">
+                <label for="reg_aircraft_transport">Auf welchem Wege?</label>
+                <div id="reg_aircraft_transport">
+                    <input id="reg_aircraft_transport_trailer" type="radio" name="aircraft_transport" value="trailer" checked="">
+                    <label for="reg_aircraft_transport_trailer">im Anhänger</label><br />
+                    <input id="reg_aircraft_transport_flight" type="radio" name="aircraft_transport" value="flight">
+                    <label for="reg_aircraft_transport_flight">durch die Luft</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <!------------------------------------------------------------------------->
+        <div class="formfield">
+            <label for="reg_remarks">Hast du noch eine Mitteilung an uns?</label>
+            <textarea id="reg_remarks" type="text" name="remarks"></textarea>
+        </div>
+    </div>
+
+    <div class="errormessage" style="color: red; display: none;"></div>
+
+    <img id="formloader" src="/static/images/loading.gif" style="display: none;">
+    <input type="submit" value="Anmelden" class="submitbtn" />
+</form>
+
+<div id="regsuccess" class="formsuccess" style="display: none;">
+    <p style="text-align: center;"><strong>Vielen Dank!</strong></p>
+
+    <p>Deine Anmeldung ist bei uns eingegangen! Du erhälst in wenigen Minuten eine automatische Bestätigungsmail von uns.<br />
+
+    Solltest du noch Fragen haben oder wenn etwas von deinen Angaben nicht stimmt, schicke uns Bitte eine
+    Nachricht über das <a href="#kontakt">Kontaktformular</a>.</p>
+
+</div>
+ #}

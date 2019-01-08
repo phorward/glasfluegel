@@ -1,4 +1,4 @@
-#application: {{app_id}}
+#application: glasfluegel-viur
 #version: 1
 runtime: python27
 api_version: 1
@@ -12,13 +12,13 @@ handlers:
 - url: /resources
   static_dir: server/resources
 - url: /_tasks
-  script: {{app_id}}.application
+  script: glasfluegel-viur.application
 - url: /admin/user/getAuthMethod
-  script: {{app_id}}.application
+  script: glasfluegel-viur.application
 - url: /admin/.*
-  script: {{app_id}}.application
+  script: glasfluegel-viur.application
 - url: /vi.*
-  script: {{app_id}}.application
+  script: glasfluegel-viur.application
 - url: /favicon.ico
   static_files: static/meta/favicon.ico
   upload: favicon.ico
@@ -26,7 +26,7 @@ handlers:
   static_files: static/meta/robots.txt
   upload: robots.txt
 - url: /.*
-  script: {{app_id}}.application
+  script: glasfluegel-viur.application
 
 libraries:
 - name: jinja2

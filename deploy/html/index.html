@@ -1,59 +1,103 @@
-{% extends "viur_base.html" %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <!-- Herzlich willkommen bei-->
+  <meta name="twitter:title" content="GLASFLÜGEL-FlyIn 2016">
+  <meta property="og:title" content="GLASFLÜGEL-FlyIn 2016"/>
+  <meta property="og:image" content="http://www.glasfluegel.net/static/images/facebook.jpg"/>
+  <title>GLASFLÜGEL FlyIn | 12. - 14. August 2016 | Bad Saulgau</title>
 
-{% block content %}
-	<section class="section">
-		<h1 class="headline" style="font-size: 3em;margin-bottom: 0;">Welcome to {{ title }}!</h1>
-		<h2 class="subline">A VIUR project</h2>
-	</section>
-	<section class="section">
-		<h3 class="headline">Features</h3>
+  <!-- Language -->
+  <meta name="content-language" content="de"/>
+  <meta name="DC.Language" content="de"/>
+  <meta http-equiv="content-language" content="de"/>
 
-		<div class="grid--12-row">
-			<div class="grid--12-col">
-				<ul class="is-list">
-					<li>Cloud based! Built for the <a href="https://cloud.google.com/appengine/" target="_blank">Google App Engine™</a>.</li>
-					<li>Written in the <a href="https://www.python.org/" target="_blank">Python™ Programming Language</a>.</li>
-					<li>Provides a flexible and consistent API and SDK.</li>
-					<li>Uses well understood concepts, like MVC.</li>
-					<li>Provides lots of customizable modules.</li>
-					<li>Build-in multi-language support.</li>
-					<li>Auto-generated user interfaces and data management facilities.</li>
-				</ul>
-			</div>
+  <!-- Descriptions -->
+  <meta name="description" lang="de" content="Offizielle Website zum Glasflügel FlyIn 2016, 12. - 14. August 2016, Bad Saulgau"/>
+  <meta name="twitter:description" content="">
+  <meta name="DC.Description" content=""/>
+  <meta property="og:description" content="Offizielle Website zum Glasflügel FlyIn 2016, 12. - 14. August 2016, Bad Saulgau"/>
+  <meta name="keywords" lang="de" content=""/>
 
-			<div class="grid--12-col">
-				<ul class="is-list">
-					<li>Fast - Rapid prototyping and agile support.</li>
-					<li>Scalable - Build complex solutions with a small set of components.</li>
-					<li>Flexible - Prepared for different output formats (HTML5, XML, JSON, PDF, etc.)</li>
-					<li>Secure - ViUR® protects private data by design!</li>
-					<li>Easy to use - User centric and user friendly interface (PostCMS).</li>
-					<li>Content centric - Adapt to your needs, not the other way around.</li>
-					<li>Open - ViUR® is entirely released to the <a href="https://www.viur.is/community">Open Source Community</a>.</li>
-				</ul>
-			</div>
-		</div>
-	</section>
+  <!-- Diese Webseite ist ein viur Informationssystem. -->
+  <meta name="generator" content="www.viur.is"/>
+  <meta name="author" content="Mausbrand Informationssysteme GmbH"/>
 
-	<section class="section">
-		<h3 class="headline">Contribute</h3>
-		<p>
-			ViUR is an open-source project.<br>
-            That means: we are looking forward to hear from you.<br>
-            Contributions and input are highly welcome.<br><br>
-			If you are interested you may:<br><br>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:type" content="website"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-			Fork ViUR on <a target="_blank" href="https://github.org/viur-framework/">GitHub</a> and submit pull-request with your modifications.<br>
-			Follow ViUR on <a target="_blank" href="https://twitter.com/weloveViUR">Twitter</a>, <a target="_blank" href="https://www.facebook.com/weloveViUR/">Facebook</a> or <a target="_blank" href="https://plus.google.com/+ViurIs">Google+</a> and ask any question.<br>
-			Join the <a target="_blank" href="https://plus.google.com/communities/102034046048891029088">Google User Group</a> to discuss the future of ViUR.<br>
-			Or you can send us a <a target="_blank" href="https://www.mausbrand.de/en/site/impressum">Postcard</a>. We love postcards.
-		</p>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
-		<a href="https://www.viur.is/community" target="_blank">
-			<button class="btn has-icon" type="button">
-				{{ embedSvg("icon-heart") }} Join community
-			</button>
-		</a>
-	</section>
+  <!-- icons -->
+  <link rel="shortcut icon" href="/static/images/favicon.png" type="image/png"/>
 
-{% endblock content %}
+  <!-- css -->
+  <link href="/static/css/lightbox.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+
+  <!-- js -->
+  <script src="//code.jquery.com/jquery-latest.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/pagination.js"></script>
+
+</head>
+<body lang="de">
+{%- set appconf = getEntry("appconf") -%}
+{%- set sections = getConf("sections") -%}
+
+<header class="mainnavigation">
+	<nav>
+		<ul>
+			<li class="logo"><a href="#start">&nbsp;</a></li>
+            {% for sect in sections %}
+                {% if appconf["%s_active" % sect] %}
+                    <li><a href="#{{ sect }}">{{ appconf["%s_menuname" % sect] }}</a></li>
+                {% endif %}
+            {% endfor %}
+		</ul>
+	</nav>
+</header>
+
+<div class="content">
+    {% for sect in sections %}
+        {% if appconf["%s_active" % sect] %}
+            <section id="{{ sect }}" class="{{ sect }}">
+                <article>
+                    <h1>{{ appconf["%s_headline" % sect] }}</h1>
+
+                    {% if sect == "start" %}
+                    <div class="logo"></div>
+                    {% endif %}
+
+                    <div class="text">
+                        {% include "content-%s.html" % sect %}
+                    </div>
+                </article>
+
+                {% if appconf["%s_paralax" % sect] %}
+                <div class="paralax" style="background-image:url({{ appconf["%s_paralax" % sect]["servingurl"] }}=s1600)">
+
+                </div>
+                {% endif %}
+
+            </section><!-- {{ sect }} -->
+        {% endif %}
+    {% endfor %}
+</div>
+
+<footer>
+	<ul>
+        {% for sect in sections %}
+            <li><a href="#{{ sect }}">{{ appconf["%s_menuname" % sect] }}</a></li>
+        {% endfor %}
+	</ul>
+</footer>
+
+<script src="/static/js/lightbox.min.js"></script>
+
+</body>
+</html>
