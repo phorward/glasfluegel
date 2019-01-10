@@ -4,10 +4,9 @@ from server.skeleton import Skeleton
 from server.bones import *
 from server import conf, utils
 
-class regSkel(Skeleton):
-	kindName = "reg"
-	enforceUniqueValuesFor = "email", "Diese E-Mail Adresse wird bereits verwendet!"
+from collections import OrderedDict
 
+class regSkel(Skeleton):
 	subSkels = {"restricted": ["key", #"viewname", "firstname", "lastname", #DSGVO 2018
 							   	"aircraft", "aircraft_ignore", "aircraft_type", "aircraft_reg",
 	                            "aircraft_wb", "aircraft_pic", "aircraft_pic_ok", "aircraft_werkno",
@@ -22,22 +21,67 @@ class regSkel(Skeleton):
 				            "vegetarier", "tag_*", "tshirt_*", "sweatshirt_*", "tasse_*", "cap_*",
 				            "frameprog", "qremarks", "code", "questionaire_*", "nomail", "slideshow"]}
 
-	email = emailBone(descr=u"E-Mail Adresse", indexed=True, searchable=True, required=True)
+	email = emailBone(
+		descr=u"E-Mail Adresse",
+		indexed=True,
+		searchable=True,
+		required=True,
+		unique=u"Diese E-Mail Adresse wird bereits verwendet!")
 
-	title = selectBone(descr=u"Anrede", required=True, values={"m": u"Herr", "f": u"Frau"})
-	viewname = stringBone(descr=u"Anzeigename", searchable=True)
-	firstname = stringBone(descr=u"Vorname", required=True, indexed=True, searchable=True)
-	lastname = stringBone(descr=u"Nachname", required=True, indexed=True, searchable=True)
-	club = stringBone(descr=u"Heimatverein", indexed=True, searchable=True)
-	city = stringBone(descr=u"Heimatstadt", indexed=True, searchable=True)
+	title = selectBone(
+		descr=u"Anrede",
+		required=True,
+		values={"m": u"Herr", "f": u"Frau"}
+	)
+	viewname = stringBone(
+		descr=u"Anzeigename",
+		searchable=True
+	)
+	firstname = stringBone(
+		descr=u"Vorname",
+		required=True,
+		indexed=True,
+		searchable=True
+	)
+	lastname = stringBone(
+		descr=u"Nachname",
+		required=True,
+		indexed=True,
+		searchable=True
+	)
+	club = stringBone(
+		descr=u"Heimatverein",
+		indexed=True,
+		searchable=True
+	)
 
-	#street = stringBone(descr=u"Straße und Hausnummer", required=False, indexed=True, searchable=True)
-	#zipcode = stringBone(descr=u"PLZ", required=False, indexed=True, searchable=True)
-	#city = stringBone(descr=u"Stadt", required=False, indexed=True, searchable=True)
-	#country = selectCountryBone(descr=u"Land", required=False, defaultValue="de", indexed=True)
+	street = stringBone(
+		descr=u"Anschrift",
+		required=False,
+		indexed=True,
+		searchable=True
+	)
+
+	zipcode = stringBone(
+		descr=u"PLZ",
+		required=False,
+		indexed=True,
+		searchable=True
+	)
+	city = stringBone(
+		descr=u"Stadt",
+		indexed=True,
+		searchable=True
+	)
+
+	country = selectCountryBone(
+		descr=u"Land",
+		required=False,
+		defaultValue="de",
+		indexed=True
+	)
 
 	phone = stringBone(descr=u"Telefon", indexed=True, searchable=True)
-	#cellphone = stringBone(descr=u"Mobiltelefon", indexed=True, searchable=True)
 
 	persons = numericBone(descr=u"Personenanzahl", min=1, max=9, defaultValue=1)
 	vegetarier = numericBone(descr=u"Anzahl Vegetarier", defaultValue=0, indexed=True)
@@ -50,28 +94,83 @@ class regSkel(Skeleton):
 	                                params={"category": u"Camping"})
 
 	# Flugzeug
-	aircraft = booleanBone(descr=u"Mit Flugzeug?", params={"category": u"Flugzeug"}, indexed=True,
-	                        defaultValue=False)
-	aircraft_ignore = booleanBone(descr=u"Flugzeug ignorieren", params={"category": u"Flugzeug"},
-	                              indexed=True, defaultValue=False)
-	aircraft_type = stringBone(descr=u"Flugzeugtyp", params={"category": u"Flugzeug"},
-	                            indexed=True, searchable=True)
-	aircraft_reg = stringBone(descr=u"Kennzeichen", params={"category": u"Flugzeug"},
-	                            indexed=True, searchable=True)
-	aircraft_wb = stringBone(descr=u"WB-Kennzeichen", params={"category": u"Flugzeug"},
-	                            indexed=True, searchable=True)
-	aircraft_bj = stringBone(descr=u"Baujahr", params={"category": u"Flugzeug"})
-	aircraft_werkno = stringBone(descr=u"Werk-Nr.", params={"category": u"Flugzeug"})
+	aircraft = booleanBone(
+		descr=u"Mit Flugzeug?",
+		params={"category": u"Flugzeug"},
+		indexed=True,
+		defaultValue=False
+	)
 
-	aircraft_pic = fileBone(descr=u"Galeriebild", params={"category": u"Flugzeug"})
-	aircraft_pic_ok = booleanBone(descr=u"Bild geprüft und sichtbar?",
-	                                params={"category": u"Flugzeug"},
-	                                indexed=True,
-	                                defaultValue=False)
-	aircraft_transport = selectBone(descr=u"Transport",
-	                                values={"trailer": "Trailer",
-	                                        "flight": "per Luft"},
-	                                params={"category": u"Flugzeug"})
+	aircraft_ignore = booleanBone(
+		descr=u"Flugzeug ignorieren",
+		params={"category": u"Flugzeug"},
+		indexed=True,
+		defaultValue=False
+	)
+
+	aircraft_type = selectBone(
+		descr=u"Flugzeugtyp",
+		params={"category": u"Flugzeug"},
+	    indexed=True,
+		searchable=True,
+		values=OrderedDict(
+			[(i, v) for i, v in enumerate([
+				u"H-30 GFK",
+				u"H-301 Libelle",
+				u"BS-1",
+				u"Standard Libelle 201",
+				u"Kestrel 401",
+				u"Standard Libelle 202",
+				u"Standard Libelle 203",
+				u"Standard Libelle 204",
+				u"Club Libelle 205",
+				u"Hornet 206",
+				u"Hornet C",
+				u"Mosquito 303",
+				u"Glasflügel 304",
+				u"Glasflügel 402",
+				u"Falcon",
+				u"start+flug H-101 Salto",
+				u"start+flug H-111 Hippie"
+			])
+		])
+	)
+
+	aircraft_reg = stringBone(
+		descr=u"Kennzeichen",
+		params={"category": u"Flugzeug"},
+	    indexed=True,
+		searchable=True
+	)
+	aircraft_wb = stringBone(
+		descr=u"WB-Kennzeichen",
+		params={"category": u"Flugzeug"},
+	    indexed=True,
+		searchable=True
+	)
+	aircraft_bj = stringBone(
+		descr=u"Baujahr",
+		params={"category": u"Flugzeug"}
+	)
+	aircraft_werkno = stringBone(
+		descr=u"Werk-Nr.",
+		params={"category": u"Flugzeug"}
+	)
+
+	aircraft_pic = fileBone(
+		descr=u"Galeriebild",
+		params={"category": u"Flugzeug"}
+	)
+	aircraft_pic_ok = booleanBone(
+		descr=u"Bild geprüft und sichtbar?",
+	    params={"category": u"Flugzeug"},
+	    indexed=True,
+	    defaultValue=False
+	)
+	aircraft_transport = selectBone(
+		descr=u"Transport",
+	    values={"trailer": "Trailer", "flight": "per Luft"},
+		params={"category": u"Flugzeug"})
 
 	# Fragebogen
 	aircraft_flight = selectBone(descr=u"Möchte fliegen?", values={"1": "Ja", "0": "Nein", "-": "Vielleicht"},
@@ -159,11 +258,11 @@ class regSkel(Skeleton):
 
 	def toDB(self, *args, **kwargs):
 		if "viewname" in self.keys():
-			if not self["viewname"].value:
-				self["viewname"].value = "%s %s" % (self["firstname"].value, self["lastname"].value)
+			if not self["viewname"]:
+				self["viewname"] = "%s %s" % (self["firstname"], self["lastname"])
 
-		if "code" in self.keys() and not self["code"].value:
-			self["code"].value = utils.generateRandomString()
+		if "code" in self.keys() and not self["code"]:
+			self["code"] = utils.generateRandomString()
 
 		#if "slideshow" in self.keys():
 		#	self["slideshow"].value = self["visible"].value and self["aircraft_pic_ok"].value and not self["aircraft_ignore"].value

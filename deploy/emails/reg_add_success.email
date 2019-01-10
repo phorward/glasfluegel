@@ -1,0 +1,44 @@
+Subject: Deine Anmeldung zum Glasflügel FlyIn 2016
+<html>
+<body>
+<p>Hallo {{ skel.firstname }},</p>
+<p>hiermit bestätigen wir den Eingang deiner Anmeldung zum <strong>Glasflügel FlyIn 2016,
+    12. - 14. August 2016 am Flugplatz Saulgau (EDTU)</strong>.</p>
+
+<p>Du bist mit folgenden Daten angemeldet:</p>
+
+{% set struct = getSkel("reg", "addSkel") %}
+
+{% for fld in ["title", "firstname", "lastname", "club", "city", "email", "phone", "persons", "camping", "camping_kind"] %}
+    {% if fld == "camping_kind" and not skel["camping"] %}
+    {% continue %}
+    {% endif %}
+
+    <span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
+    <strong>{{ _((skel[fld].descr or skel[fld])|string) }}</strong><br />
+{% endfor %}
+
+{% if skel["aircraft"] %}
+<p>Ausserdem wurde folgendes Flugzeug für das FlyIn registriert:</p>
+
+{% for fld in ["aircraft_type", "aircraft_reg", "aircraft_wb", "aircraft_transport"] %}
+    <span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
+    <strong>{{ _((skel[fld].descr or skel[fld])|string) }}</strong><br />
+{% endfor %}
+
+{% endif %}
+
+{% if skel["remarks"] %}
+<p>Du hast uns folgende Bemerkung hinterlassen:</p>
+    <strong>{{ skel["remarks"] }}</strong>
+{% endif %}
+
+<p>Sollte etwas bei den hinterlegten Daten nicht stimmen, oder falls du noch irgendwelche Fragen zum
+    FlyIn, zum Ablauf oder Unterkunft hast, schreibe uns bitte eine <a href="mailto:info@glasfluegel.net">kurze Nachricht</a>.</p>
+
+<p>Dann bis spätestens zum FlyIn!<br ><br>
+
+<string>Das FlyIn-Organisations-Team</string></p>
+
+</body>
+</html>

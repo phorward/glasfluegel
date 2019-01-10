@@ -13,6 +13,8 @@ class appconf(Singleton):
 	             "sortIndex": -10
 	}
 
+	def canView(self):
+		return True
 
 	@callDeferred
 	def updateStatistics(self, *args, **kwargs):
@@ -20,9 +22,9 @@ class appconf(Singleton):
 
 		skel = self.getContents()
 
-		skel["total_persons"].value = 0
-		skel["total_vegetarier"].value = 0
-		skel["total_aircraft"].value = 10
+		skel["total_persons"] = 0
+		skel["total_vegetarier"] = 0
+		skel["total_aircraft"] = 10
 
 		cursor = None
 		while True:
@@ -34,11 +36,11 @@ class appconf(Singleton):
 			regs = q.fetch(limit=99)
 
 			for reg in regs:
-				skel["total_persons"].value += reg["persons"].value
-				skel["total_vegetarier"].value += (reg["vegetarier"].value or 0)
+				skel["total_persons"] += reg["persons"]
+				skel["total_vegetarier"] += (reg["vegetarier"] or 0)
 
-				if reg["aircraft"].value and not reg["aircraft_ignore"].value:
-					skel["total_aircraft"].value += 1
+				if reg["aircraft"] and not reg["aircraft_ignore"]:
+					skel["total_aircraft"] += 1
 
 			if not len(regs):
 				break
@@ -46,11 +48,11 @@ class appconf(Singleton):
 			cursor = regs.cursor
 
 		logging.info("::: Updating statistics :::")
-		logging.info("Total persons count: %d" % skel["total_persons"].value)
-		logging.info("Total vegetarians count: %d" % skel["total_vegetarier"].value)
-		logging.info("Total aircraft count: %d" % skel["total_aircraft"].value)
+		logging.info("Total persons count: %d" % skel["total_persons"])
+		logging.info("Total vegetarians count: %d" % skel["total_vegetarier"])
+		logging.info("Total aircraft count: %d" % skel["total_aircraft"])
 
 		skel.toDB()
 
 
-appconf.jinja2 = True
+appconf.html = True

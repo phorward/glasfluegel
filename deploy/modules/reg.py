@@ -37,18 +37,18 @@ class reg(List):
 	def onItemAdded(self, skel):
 		conf["viur.mainApp"].appconf.updateStatistics()
 
-		if skel["nomail"].value:
+		if skel["nomail"]:
 			logging.info("No mail to user.")
 			return
 
-		utils.sendEMail(skel["email"].value, "reg_add_success", skel, replyTo="info@glasfluegel.net")
-		utils.sendEMail("info@glasfluegel.net", "reg_add_success_to_orga", skel, replyTo=skel["email"].value)
+		utils.sendEMail(skel["email"], "reg_add_success", skel, replyTo="info@glasfluegel.net")
+		utils.sendEMail("info@glasfluegel.net", "reg_add_success_to_orga", skel, replyTo=skel["email"])
 
 	def onItemEdited(self, skel):
 		conf["viur.mainApp"].appconf.updateStatistics()
 
-		if not utils.getCurrentUser() and not skel["nomail"].value:
-			self.sendQuestionaireEmail(str(skel["key"].value))
+		if not utils.getCurrentUser() and not skel["nomail"]:
+			self.sendQuestionaireEmail(str(skel["key"]))
 
 	@callDeferred
 	def sendQuestionaireEmail(self, key):
@@ -57,19 +57,19 @@ class reg(List):
 			logging.error("Entity not found")
 			return
 
-		if skel["nomail"].value:
+		if skel["nomail"]:
 			logging.info("No mail to user.")
 			return
 
 		try:
-			utils.sendEMail(skel["email"].value, "reg_questionaire_success",
+			utils.sendEMail(skel["email"], "reg_questionaire_success",
 			                skel, replyTo="info@glasfluegel.net")
 		except:
 			logging.error("Error sending mail to attendee")
 
 		try:
 			utils.sendEMail("info@glasfluegel.net", "reg_questionaire_success_to_orga",
-		                    skel, replyTo=skel["email"].value)
+		                    skel, replyTo=skel["email"])
 		except:
 			logging.error("Error sending mail to orga")
 
@@ -117,9 +117,9 @@ class reg(List):
 		count = 0
 		txt = ""
 		for skel in q.fetch(limit=99):
-			#if skel["email"].value == "jmm@phorward.de":
-			self.sendQuestionaire(str(skel["key"].value))
-			txt += skel["email"].value + "\n"
+			#if skel["email"] == "jmm@phorward.de":
+			self.sendQuestionaire(str(skel["key"]))
+			txt += skel["email"] + "\n"
 			count += 1
 
 		return "<html><pre>%s</pre><hr />%d questionaires sent</html>" % (txt, count)
@@ -130,21 +130,21 @@ class reg(List):
 		if not skel.fromDB(key):
 			return
 
-		#if skel["questionaire_filled"].value:
-		if skel["questionaire_sent"].value:
+		#if skel["questionaire_filled"]:
+		if skel["questionaire_sent"]:
 			logging.warning("Questionaire already sent!")
 			return
 
-		if not skel["nomail"].value:
+		if not skel["nomail"]:
 			try:
-					utils.sendEMail(skel["email"].value, "reg_questionaire", skel, replyTo="info@glasfluegel.net")
+					utils.sendEMail(skel["email"], "reg_questionaire", skel, replyTo="info@glasfluegel.net")
 			except:
 				logging.error("Can't send newsletter to attendee")
 				return
 		else:
 			logging.info("Sending mail disabled for user")
 
-		skel["questionaire_sent"].value = True
+		skel["questionaire_sent"] = True
 		skel.toDB()
 
 		logging.info("Newsletter was sent! :)")
@@ -170,7 +170,7 @@ class reg(List):
 
 		# Check for key
 		if not utils.getCurrentUser():
-			if not ("code" in kwargs.keys() and skel["code"].value == kwargs["code"]):
+			if not ("code" in kwargs.keys() and skel["code"] == kwargs["code"]):
 				raise errors.Unauthorized()
 
 			del kwargs["code"]
@@ -199,8 +199,8 @@ class reg(List):
 			raise errors.PreconditionFailed()
 
 		# Reset the code now!
-		skel["code"].value = None
-		skel["questionaire_filled"].value = True
+		skel["code"] = None
+		skel["questionaire_filled"] = True
 
 		skel.toDB()  # write it!
 		self.onItemEdited(skel)

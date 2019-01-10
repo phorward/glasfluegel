@@ -33,7 +33,7 @@ class contact(Formmailer):
 		# Allow bones to perform outstanding "magic" operations before sending the mail
 		for key, _bone in skel.items():
 			if isinstance(_bone, baseBone):
-				_bone.performMagic(isAdd=True)
+				_bone.performMagic(skel.valuesCache, key, isAdd=True)
 
 		rcpts = self.getRcpts(skel)
 		#utils.sendEMail(rcpts, self.mailTemplate, skel, replyTo=skel["email"])

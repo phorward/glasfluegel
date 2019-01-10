@@ -136,7 +136,6 @@ $(document).ready(function () {
 
 
     //Anmeldung
-    /*
     $("input[name=aircraft]").on("change",
         function(event)
         {
@@ -332,7 +331,6 @@ $(document).ready(function () {
 
             return false;
         });
-     */
 
     // Kontaktmailer
     $("#formmailer").on("submit",

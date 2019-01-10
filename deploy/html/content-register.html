@@ -1,25 +1,18 @@
 {% from "macros/macros.html" import image, headline %}
 
-<p>Die Anmeldung für den Glasflügel CUP 2019 ist ab Januar 2019 möglich!</p>
+<p>In diesem Bereich kannst Du dich für den <strong>Glasflügel Cup 2019</strong> offiziell anmelden.</p>
 
-{#
-<p>In diesem Bereich kannst Du dich für das <strong>Glasflügel FlyIn 2016</strong> offiziell anmelden.</p>
-
-<p>Es ist dabei egal, ob du mit Flugzeug kommst oder einfach nur aus Interesse am Thema Glasflügel teilnehmen möchtest - Jeder ist bei uns Willkommen! Wir benötigen deine Anmeldung, um das FlyIn sowie den Flugbetrieb besser planen zu können. Auch wenn du oder ihr nicht das ganze Wochenende kommen könnt, hinterlasse bitte eine Anmeldung mit entsprechender Bemerkung. Auch was die Kosten angeht, kann man über alles reden.</p>
+<p>Es ist dabei egal, ob du mit Flugzeug kommst oder einfach nur aus Interesse am Thema Glasflügel teilnehmen möchtest - Jeder ist bei uns Willkommen! Wir benötigen deine Anmeldung, um den Cup sowie den Flugbetrieb besser planen zu können. Auch wenn du oder ihr nicht das ganze Wochenende kommen könnt, hinterlasse bitte eine Anmeldung mit entsprechender Bemerkung. Auch was die Kosten angeht, kann man über alles reden.</p>
 
 <p>Wir freuen uns auf Euch!</p>
 
 <!-- SECTION ------------------------------------------------------------------>
 
 <h2>
-    Unkostenpauschale
+    Meldegebühr
 </h2>
 
-<p>Das FlyIn ist natürlich eine Veranstaltung von Fliegern für Flieger. Um aber unsere eigenen Aufwandskosten für das FlyIn decken zu können - dies betrifft vor allem den Samstagabend mit der großen Glasflügel-Party - erheben wir eine kleine Organisationspauschale von 25€ für jedes angemeldete Segelflugzeug. Campinggebühren oder Kosten für Strom fallen nicht an.</p>
-
-<p>Hinzu kommt noch eine kleine Unkostenpauschale pro Person für die Verpflegung (Essen, Getränke) am Samstagabend. Dies werden wir bekanntgeben, sobald uns entsprechend viele Anmeldungen vorliegen, um besser planen zu können.</p>
-
-<p>Die Startgebühr/Schleppgebühr für entsprechenden Windenstarts oder F-Schlepps am Flugplatz EDTU sind an die dort ansässige Fliegergruppe bzw. an die  F-Schlepp-Piloten zu entrichten.</p>
+<p>todo</p>
 
 
 <!-- SECTION ------------------------------------------------------------------>
@@ -27,22 +20,19 @@
     Hinweis zum Flugbetrieb
 </h2>
 
-<p>Ganz allgemein gilt: Augen auf, sich bei der Flugleitung anmelden (Freq, RWY etc. siehe AIP) und mit Hirn und Vernunft sich in die Platzrunde einfädeln. Bitte geht kein Risiko ein – dies ist kein Wettbewerb bei dem es etwas zu gewinnen gibt. Hierzu zu einem späteren Zeitpunkt mehr.</p>
-
-<p>Es ist festzuhalten, dass jeder für die Einhaltung der gesetzlichen Anforderungen selber verantwortlich ist. Wir werden keine Papiere überprüfen, es kann natürlich aber sein, dass die Aufsichtsbehörde solche Kontrollen durchführt.</p>
-
-<p style="color:red;"><strong>Die genaue Landeprozedur am Flugplatz EDTU wird noch auf dieser Homepage veröffentlicht!</strong></p>
+<p>todo</p>
 
 <!-- SECTION ------------------------------------------------------------------>
 
 {{ headline("Anmeldeformular") }}
 
 <form id="regform">
-    <p>Bitte nutze dieses Anmeldeformular, um dich am FlyIn anzmelden!</p>
+    <p>Bitte nutze dieses Anmeldeformular, um dich für den Glasflügel Cup 2019 anzmelden!</p>
 
     <input type="hidden" name="skey" value="{{ getSecurityKey() }}" />
 
     <div class="form-group">
+		{% set regSkel = getSkel("reg") %}
 
         <!------------------------------------------------------------------------->
         <div class="formfield">
@@ -68,18 +58,29 @@
             <input id="reg_lastname" type="text" name="lastname" />
         </div>
 
-        <!------------------------------------------------------------------------->
-        <div class="formfield">
-            <label for="reg_club">Heimatverein</label>
-            <input id="reg_club" type="text" name="club" />
-        </div>
+		<!------------------------------------------------------------------------->
+		<div class="formfield">
+			<label for="reg_lastname">Anschrift *</label>
+			<input id="reg_lastname" type="text" name="street" />
+		</div>
 
-        <!------------------------------------------------------------------------->
-        <div class="formfield">
-            <label for="reg_city">Heimatstadt</label>
-            <input id="reg_city" type="text" name="city" />
-        </div>
+		<!------------------------------------------------------------------------->
+		<div class="formfield">
+			<label for="reg_lastname">PLZ *</label>
+			<input id="reg_lastname" type="text" name="plz" />
+		</div>
 
+		<!------------------------------------------------------------------------->
+		<div class="formfield">
+			<label for="reg_lastname">Ort *</label>
+			<input id="reg_lastname" type="text" name="city" />
+		</div>
+
+		<!------------------------------------------------------------------------->
+		<div class="formfield">
+			<label for="reg_club">Heimatverein</label>
+			<input id="reg_club" type="text" name="club" />
+		</div>
         <!------------------------------------------------------------------------->
         <div class="formfield">
             <label for="reg_email">E-Mail *</label>
@@ -166,7 +167,12 @@
 
             <div class="formfield">
                 <label for="reg_aircraft_type">Flugzeugtyp *</label>
-                <input id="reg_aircraft_type" type="text" name="aircraft_type" placeholder="" />
+
+				<select id="reg_aircraft_type" name="aircraft_type">
+					{% for x, y in regSkel["aircraft_type"]["values"].items() %}
+						<option value="{{ x }}">{{ y }}</option>
+					{% endfor %}
+				</select>
             </div>
 
             <div class="formfield">
@@ -200,15 +206,6 @@
                 </div>
             </div>
 
-            <div class="formfield">
-                <label for="reg_aircraft_transport">Auf welchem Wege?</label>
-                <div id="reg_aircraft_transport">
-                    <input id="reg_aircraft_transport_trailer" type="radio" name="aircraft_transport" value="trailer" checked="">
-                    <label for="reg_aircraft_transport_trailer">im Anhänger</label><br />
-                    <input id="reg_aircraft_transport_flight" type="radio" name="aircraft_transport" value="flight">
-                    <label for="reg_aircraft_transport_flight">durch die Luft</label>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -235,4 +232,3 @@
     Nachricht über das <a href="#kontakt">Kontaktformular</a>.</p>
 
 </div>
- #}
