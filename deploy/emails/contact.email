@@ -1,10 +1,10 @@
-Subject: Eine Kontaktanfrage zum Glasflügel FlyIn 2016
+Subject:Kontaktanfrage Glasflügel-Cup 2019
 <html>
 <body>
-<p>Hallo!</p>
+	<p>Hallo!</p>
 
-<p>Es wurde eine neue Kontaktanfrage von {{ skel["email"] }} über flyin.glasfluegel.net gestellt:</p>
-<pre>{{ skel["descr"] }}</pre>
+	<p>Es wurde eine neue Kontaktanfrage von <a href="mailto:{{ skel["email"] }}">{{ skel["email"] }}</a> gestellt:</p>
+	<pre>{{ skel["descr"] }}</pre>
 
 </body>
 </html>

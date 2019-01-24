@@ -74,7 +74,11 @@
                     {% endif %}
 
                     <div class="text">
-                        {% include "content-%s.html" % sect %}
+						{% if appconf["%s_static" % sect] %}
+                        	{% include "content-%s.html" % sect %}
+						{% else %}
+							{{ appconf["%s_content" % sect] }}
+						{% endif %}
                     </div>
                 </article>
 

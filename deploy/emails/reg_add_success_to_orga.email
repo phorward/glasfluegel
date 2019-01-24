@@ -1,4 +1,4 @@
-Subject: Neue Anmeldung Glasflügel FlyIn 2016
+Subject:Neue Anmeldung zum Glasflügel-Cup 2019
 <html>
 <body>
 <p>Es wurde eine neue Anmeldung getätigt!</p>
@@ -17,7 +17,7 @@ Subject: Neue Anmeldung Glasflügel FlyIn 2016
 {% if skel["aircraft"] %}
 <p>Ausserdem wurde folgendes Flugzeug registriert:</p>
 
-{% for fld in ["aircraft_type", "aircraft_reg", "aircraft_wb", "aircraft_transport"] %}
+{% for fld in ["aircraft_type", "aircraft_reg", "aircraft_wb"] %}
     <span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
     <strong>{{ _((skel[fld].descr or skel[fld])|string) }}</strong><br />
 {% endfor %}

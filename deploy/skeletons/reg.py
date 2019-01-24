@@ -19,7 +19,8 @@ class regSkel(Skeleton):
 				            "aircraft_flight", "aircraft_others", "aircraft_others_comment",
 				            "aircraft_nightup", "aircraft_bj", "aircraft_werkno",
 				            "vegetarier", "tag_*", "tshirt_*", "sweatshirt_*", "tasse_*", "cap_*",
-				            "frameprog", "qremarks", "code", "questionaire_*", "nomail", "slideshow"]}
+				            "frameprog", "qremarks", "code", "questionaire_*", "nomail", "slideshow",
+							"accept_*"]}
 
 	email = emailBone(
 		descr=u"E-Mail Adresse",
@@ -171,6 +172,19 @@ class regSkel(Skeleton):
 		descr=u"Transport",
 	    values={"trailer": "Trailer", "flight": "per Luft"},
 		params={"category": u"Flugzeug"})
+
+	# Wettbewerb
+	accept_wb = booleanBone(
+		descr=u"Wettbewerbsordnung akzeptiert",
+		indexed=True,
+		defaultValue=False
+	)
+
+	accept_dsgvo = booleanBone(
+		descr=u"Datenschutzvereinbarung akzeptiert",
+		indexed=True,
+		defaultValue=False
+	)
 
 	# Fragebogen
 	aircraft_flight = selectBone(descr=u"Möchte fliegen?", values={"1": "Ja", "0": "Nein", "-": "Vielleicht"},

@@ -34,3 +34,16 @@ class appconfSkel(Skeleton):
 			descr=u"Paralax",
 			params={"category": catName}
 		)
+
+		locals()["%s_static" % sect] = booleanBone(
+			descr=u"Statisch",
+			defaultValue=True,
+			params={"category": catName}
+		)
+
+		locals()["%s_content" % sect] = textBone(
+			descr=u"Inhalt",
+			params={
+				"category": catName,
+				"logic.visibleIf": "not %s_static" % sect}
+		)
