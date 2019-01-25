@@ -2,6 +2,7 @@
 from server.prototypes import List
 
 class news(List):
+	listTemplate = "news_list"
 
 	adminInfo = {"name": u"Neuigkeiten",
 	             "handler": "list",

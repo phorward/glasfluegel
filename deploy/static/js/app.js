@@ -452,6 +452,23 @@ $(document).ready(function () {
 
     $("input[type=submit]").removeAttr("disabled");
 
+    // News nachladen
+	$("#news-all").click(
+		function()
+		{
+			$("#news-all").hide();
+			$.ajax({
+				type: "GET",
+				url: "/news/list?cursor=" + $("#news-all").data("cursor") + "&style=next&amount=99&action=1&orderby=creationdate&orderdir=1",
+				dataType : 'html',
+				cache: false,
+				success : function(html){
+					$("#news-all").parent().append(html);
+				}
+			});
+		}
+	);
+
 	// Cookie consent
 	window.addEventListener("load", function(){
 	window.cookieconsent.initialise({
