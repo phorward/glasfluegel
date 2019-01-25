@@ -6,6 +6,12 @@ from server.config import conf
 class appconfSkel(Skeleton):
 	kindName = "appconf"
 
+	recipients = stringBone(
+		descr=u"E-Mail-Empfänger",
+		multiple=True,
+		required=True
+	)
+
 	total_persons = numericBone(descr=u"Anzahl Teilnehmer", defaultValue=0, readOnly=True)
 	total_vegetarier = numericBone(descr=u"Anzahl Vegetarier", defaultValue=0, readOnly=True)
 	total_aircraft = numericBone(descr=u"Anzahl Flugzeuge", defaultValue=0, readOnly=True)

@@ -10,16 +10,17 @@ class reg(List):
 	listTemplate = "reg_list"
 	viewTemplate = "reg_view"
 
-	adminInfo = {"name": u"Anmeldungen",
-	             "handler": "list",
-	             "icon": "icons/modules/shoutbox.svg",
-	             "sortIndex": -20,
-				 "filter": {"orderby": "creationdate", "orderdir": "1"},
-	             "columns": ["email", "firstname", "lastname", "persons", "visible",
-	                            "aircraft_type", "aircraft_reg",
-	                                "aircraft_wb", "aircraft_pic", "aircraft_pic_ok"],
-	             "actions": ["exportcsv"],
-	             "previewurls": {"View": "/{{module}}/questionaire/{{key}}?code={{code}}"}
+	adminInfo = {
+		"name": u"Anmeldungen",
+		"handler": "list",
+		"icon": "icons/modules/shoutbox.svg",
+		"sortIndex": -20,
+		"filter": {"orderby": "creationdate", "orderdir": "1"},
+		"columns": ["email", "firstname", "lastname", "persons", "visible",
+					"aircraft_type", "aircraft_reg",
+						"aircraft_wb", "aircraft_pic", "aircraft_pic_ok"],
+		"actions": ["exportcsv"],
+		"previewurls": {"View": "/{{module}}/questionaire/{{key}}?code={{code}}"}
 	}
 
 	def addSkel(self):
@@ -41,8 +42,34 @@ class reg(List):
 			logging.info("No mail to user.")
 			return
 
-		utils.sendEMail(skel["email"], "reg_add_success", skel, replyTo="info@glasfluegel.net")
-		utils.sendEMail("info@glasfluegel.net", "reg_add_success_to_orga", skel, replyTo=skel["email"])
+		self._sendAddSuccessEmail(str(skel["key"]))
+		self._sendAddSuccessEmailToOrga(str(skel["key"]))
+
+	@callDeferred
+	def _sendAddSuccessEmail(self, key):
+		skel = self.addSkel()
+		if not skel.fromDB(key):
+			logging.error("Unknown reg %r", key)
+			return
+
+		appconf = conf["viur.mainApp"].appconf.getContents()
+		assert appconf and appconf["recipients"]
+
+		utils.sendEMail(skel["email"], "reg_add_success", skel, replyTo=appconf["recipients"][0])
+		logging.info("reg_add_success successfully sent")
+
+	@callDeferred
+	def _sendAddSuccessEmailToOrga(self, key):
+		skel = self.addSkel()
+		if not skel.fromDB(key):
+			logging.error("Unknown reg %r", key)
+			return
+
+		appconf = conf["viur.mainApp"].appconf.getContents()
+		assert appconf and appconf["recipients"]
+
+		utils.sendEMail(appconf["recipients"], "reg_add_success_to_orga", skel, replyTo=skel["email"])
+		logging.info("reg_add_success_to_orga successfully sent")
 
 	def onItemEdited(self, skel):
 		conf["viur.mainApp"].appconf.updateStatistics()
