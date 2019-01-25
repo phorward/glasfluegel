@@ -33,8 +33,8 @@ from server import conf
 conf["viur.forceSSL"] = True
 #conf["viur.disableCache"] = True
 
-#conf["viur.exportPassword"] = "de1c3c15b33daaf1486ccbe39fda9f88"
-#conf["viur.importPassword"] = "00261bb9ce93268b752c578b0b3fe636"
+#conf["viur.exportPassword"] = "xxx"
+#conf["viur.importPassword"] = "xxx"
 
 # ------------------------------------------------------------------------------
 # Project configuration

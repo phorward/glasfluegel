@@ -7,7 +7,7 @@ from server import conf, utils
 from collections import OrderedDict
 
 class regSkel(Skeleton):
-	subSkels = {"restricted": ["key", #"viewname", "firstname", "lastname", #DSGVO 2018
+	subSkels = {"restricted": ["key", "viewname", "firstname", "lastname", "aircraft_pilot2", "aircraft_pilot3", "country",
 							   	"aircraft", "aircraft_ignore", "aircraft_type", "aircraft_reg",
 	                            "aircraft_wb", "aircraft_pic", "aircraft_pic_ok", "aircraft_werkno",
 	                            "aircraft_bj", "creationdate", "club", "visible", "persons", "slideshow"],
