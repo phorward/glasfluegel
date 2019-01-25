@@ -26,6 +26,14 @@ indexes:
   - name: creationdate
     direction: desc
 
+- kind: reg
+  properties:
+  - name: aircraft
+  - name: aircraft_ignore
+  - name: visible
+  - name: creationdate
+    direction: desc
+
 - kind: user
   properties:
   - name: contact

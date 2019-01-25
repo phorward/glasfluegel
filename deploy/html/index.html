@@ -2,10 +2,10 @@
 <html>
 <head>
   <!-- Herzlich willkommen bei-->
-  <meta name="twitter:title" content="GLASFLÜGEL-FlyIn 2016">
-  <meta property="og:title" content="GLASFLÜGEL-FlyIn 2016"/>
+  <meta name="twitter:title" content="Glasflügel-Cup 2019">
+  <meta property="og:title" content="Glasflügel-Cup 2019"/>
   <meta property="og:image" content="http://www.glasfluegel.net/static/images/facebook.jpg"/>
-  <title>GLASFLÜGEL FlyIn | 12. - 14. August 2016 | Bad Saulgau</title>
+  <title>GLASFLÜGEL CUP 2019 | 12. - 15. Juni 2019 | Flugplatz Bad Saulgau</title>
 
   <!-- Language -->
   <meta name="content-language" content="de"/>
@@ -13,10 +13,10 @@
   <meta http-equiv="content-language" content="de"/>
 
   <!-- Descriptions -->
-  <meta name="description" lang="de" content="Offizielle Website zum Glasflügel FlyIn 2016, 12. - 14. August 2016, Bad Saulgau"/>
+  <meta name="description" lang="de" content="Offizielle Website zum Glasflügel Cup 2019, 12. - 15. Juni 2019, Bad Saulgau"/>
   <meta name="twitter:description" content="">
   <meta name="DC.Description" content=""/>
-  <meta property="og:description" content="Offizielle Website zum Glasflügel FlyIn 2016, 12. - 14. August 2016, Bad Saulgau"/>
+  <meta property="og:description" content="Offizielle Website zum Glasflügel Cup 2019, 12. - 15. Juni 2019, Bad Saulgau"/>
   <meta name="keywords" lang="de" content=""/>
 
   <!-- Diese Webseite ist ein viur Informationssystem. -->
@@ -66,6 +66,7 @@
     {% for sect in sections %}
         {% if appconf["%s_active" % sect] %}
             <section id="{{ sect }}" class="{{ sect }}">
+				<a name="{{ sect }}"></a>
                 <article>
                     <h1>{{ appconf["%s_headline" % sect] }}</h1>
 

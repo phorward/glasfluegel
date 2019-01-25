@@ -19,8 +19,8 @@
 #
 # Project:      glasfluegel-viur
 # Initiated:    2019-01-07 22:50:17
-# Copyright:    neo @ Mausbrand Informationssysteme GmbH
-# Author:       neo
+# Copyright:    Jan Max Meyer
+# Author:       Jan Max Meyer
 #
 # ------------------------------------------------------------------------------
 

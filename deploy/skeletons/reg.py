@@ -12,12 +12,13 @@ class regSkel(Skeleton):
 	                            "aircraft_wb", "aircraft_pic", "aircraft_pic_ok", "aircraft_werkno",
 	                            "aircraft_bj", "creationdate", "club", "visible", "persons", "slideshow"],
 				"regform": ["email", "title", "viewname", "firstname", "lastname", "club", "city",
+							"street", "zipcode", "country",
 	                        "phone", "persons", "camping", "camping_kind",
 	                        "aircraft", "aircraft_type", "aircraft_reg",
 	                        "aircraft_wb", "aircraft_pic", "aircraft_title",
 	                        "aircraft_transport", "remarks", "creationdate", "changedate",
 				            "aircraft_flight", "aircraft_others", "aircraft_others_comment",
-				            "aircraft_nightup", "aircraft_bj", "aircraft_werkno",
+				            "aircraft_nightup", "aircraft_bj", "aircraft_werkno", "aircraft_pilot*",
 				            "vegetarier", "tag_*", "tshirt_*", "sweatshirt_*", "tasse_*", "cap_*",
 				            "frameprog", "qremarks", "code", "questionaire_*", "nomail", "slideshow",
 							"accept_*"]}
@@ -168,10 +169,15 @@ class regSkel(Skeleton):
 	    indexed=True,
 	    defaultValue=False
 	)
-	aircraft_transport = selectBone(
-		descr=u"Transport",
-	    values={"trailer": "Trailer", "flight": "per Luft"},
-		params={"category": u"Flugzeug"})
+
+	aircraft_pilot2 = stringBone(
+		descr=u"Name zweiter Pilot",
+		searchable=True
+	)
+	aircraft_pilot3 = stringBone(
+		descr=u"Name dritter Pilot",
+		searchable=True
+	)
 
 	# Wettbewerb
 	accept_wb = booleanBone(
@@ -186,6 +192,7 @@ class regSkel(Skeleton):
 		defaultValue=False
 	)
 
+	'''
 	# Fragebogen
 	aircraft_flight = selectBone(descr=u"Möchte fliegen?", values={"1": "Ja", "0": "Nein", "-": "Vielleicht"},
 	                                defaultValue="1", params={"category": u"Flugzeug"})
@@ -254,6 +261,7 @@ class regSkel(Skeleton):
 	                        params={"category": u"Fragebogen"})
 	cap_black = numericBone(descr=u"Glasflügel Cap, dunkel", defaultValue=0, indexed=True,
 	                        params={"category": u"Fragebogen"})
+	'''
 
 	# Sonstiges
 	frameprog = textBone(descr=u"Rahmenprogramm")

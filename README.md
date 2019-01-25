@@ -1,12 +1,10 @@
-# glasfluegel
+# glasfluegel.net
 
-Created by neo.
+Welcome!
 
-https://glasfluegel.appspot.com
+This is the source code of [https://www.glasfluegel.net], a website about the GLASFLÜGEL sailplane manufacturer from Germany, which was active from the 1960s to 1980s and a pioneer in composite technology aircraft production. Because this website and its community is mostly located in german-speaking countries, the rest of this README is in german, but you can ask any question if further assistance is needed.
 
-## Description
-
-This is glasfluegel-viur.
+This website is entirely established on (ViUR)[https://viur.is]. ViUR is a free software development framework written in Python and providing a powerful SDK to develop web-apps running on the Google App Engine platform.
 
 ## Build the Vi
 
@@ -16,16 +14,6 @@ To build the Vi, run
 $ cd vi
 $ make deploy
 ```
-
-## Install prerequisites
-
-To install prerequisites, once do
-
-```bash
-$ pip2 install -t deploy/lib -r requirements.txt --upgrade
-```
-
-or on any prerequisite change/update.
 
 ## Run local development version
 
@@ -56,6 +44,12 @@ $ gcloud app deploy --no-promote -q --project=glasfluegel --version=$USER-dev
 $ gcloud app deploy -q --project=glasfluegel --version=`date +"%Y-%m-%d"-$USER`
 ```
 
+## License
+
+This website and software is Copyright (C) 2016-2019 by Jan Max Meyer.
+
+It is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE.
+
 ## Contact
 
-Contact @codepilot for help and support.
+Contact @phorward for help and support.

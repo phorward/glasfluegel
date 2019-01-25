@@ -2,7 +2,7 @@ Subject:Deine Anmeldung zum Glasflügel-Cup 2019
 <html>
 <body>
 <p>Hallo {{ skel.firstname }},</p>
-<p>hiermit bestätigen wir den Eingang deiner Anmeldung zum <strong>Glasflügel-Cup 2018,
+<p>hiermit bestätigen wir den Eingang deiner Anmeldung zum <strong>Glasflügel-Cup 2019,
     12. - 15. Juni 2019 am Flugplatz Saulgau (EDTU)</strong>.</p>
 
 <p>Du bist mit folgenden Daten angemeldet:</p>

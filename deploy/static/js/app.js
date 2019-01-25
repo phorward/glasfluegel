@@ -223,9 +223,10 @@ $(document).ready(function () {
 
             function testField(elem, re)
             {
+            	console.log("testField", elem);
                 if( !( elem = $("#" + elem) ) )
                 {
-                    console.log("Not found");
+                    console.error("Field not found");
                     return false;
                 }
 
@@ -259,16 +260,28 @@ $(document).ready(function () {
             testField("reg_firstname");
             testField("reg_lastname");
             testField("reg_email", /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+			testField("reg_street");
+			testField("reg_zipcode");
+			testField("reg_city");
+			testField("reg_country");
+
 
             if(document.getElementById("reg_aircraft_yes").checked)
             {
                 testField("reg_aircraft_type");
                 testField("reg_aircraft_reg");
+				testField("reg_aircraft_wb");
             }
+
+			if(!document.getElementById("reg_accept_wb").checked)
+				errortxt += "Bitte akzeptiere die Wettbewerbsordnung!\n";
+
+			if(!document.getElementById("reg_accept_dsgvo").checked)
+				errortxt += "Bitte akzeptiere die Datenschutzvereinbarung!\n";
 
             if( errortxt )
             {
-                $("#regform div.errormessage").html(errortxt.replace("\n", "<br />"));
+                $("#regform div.errormessage").html(errortxt.replace(/\n/g, "<br />"));
                 $("#regform div.errormessage").fadeIn();
                 return false;
             }
@@ -304,6 +317,7 @@ $(document).ready(function () {
                                         $("#regform")[0].reset();
                                         $("#regform").fadeOut();
                                         $("#regsuccess").fadeIn();
+										document.location.hash = "register";
                                     }
                                     else
                                     {
@@ -420,6 +434,7 @@ $(document).ready(function () {
                                         $("#formmailer")[0].reset();
                                         $("#formmailer").fadeOut();
                                         $("#formmailersuccess").fadeIn();
+                                        document.location.hash = "kontakt";
                                     }
                                     else
                                     {

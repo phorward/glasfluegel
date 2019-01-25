@@ -1,11 +1,12 @@
 {% from "macros/macros.html" import image, headline %}
 
-<p>In diesem Bereich kannst Du dich für den <strong>Glasflügel Cup 2019</strong> offiziell anmelden.</p>
+<p>In diesem Bereich kannst Du dich offiziell und verbindlich für den <strong>Glasflügel Cup 2019</strong> anmelden.</p>
 
-<p>Es ist dabei egal, ob du mit Flugzeug kommst oder einfach nur aus Interesse am Thema Glasflügel teilnehmen möchtest - Jeder ist bei uns Willkommen! Wir benötigen deine Anmeldung, um den Cup sowie den Flugbetrieb besser planen zu können. Auch wenn du oder ihr nicht das ganze Wochenende kommen könnt, hinterlasse bitte eine Anmeldung mit entsprechender Bemerkung. Auch was die Kosten angeht, kann man über alles reden.</p>
+<p>Es ist dabei egal, ob du mit Flugzeug kommst und mitfliegst, oder einfach nur aus Interesse am Thema Glasflügel teilnehmen möchtest - Jeder ist bei uns Willkommen!</p>
 
 <p>Wir freuen uns auf Euch!</p>
 
+{#
 <!-- SECTION ------------------------------------------------------------------>
 
 <h2>
@@ -22,13 +23,14 @@
 
 <p>todo</p>
 
+
+#}
 <!-- SECTION ------------------------------------------------------------------>
 
 {{ headline("Anmeldeformular") }}
 
-<form id="regform">
-    <p>Bitte nutze dieses Anmeldeformular, um dich für den Glasflügel Cup 2019 anzmelden!</p>
 
+<form id="regform">
     <input type="hidden" name="skey" value="{{ getSecurityKey() }}" />
 
     <div class="form-group">
@@ -60,20 +62,39 @@
 
 		<!------------------------------------------------------------------------->
 		<div class="formfield">
-			<label for="reg_lastname">Anschrift *</label>
-			<input id="reg_lastname" type="text" name="street" />
+			<label for="reg_street">Anschrift *</label>
+			<input id="reg_street" type="text" name="street" />
 		</div>
 
 		<!------------------------------------------------------------------------->
 		<div class="formfield">
-			<label for="reg_lastname">PLZ *</label>
-			<input id="reg_lastname" type="text" name="plz" />
+			<label for="reg_zipcode">PLZ *</label>
+			<input id="reg_zipcode" type="text" name="zipcode" />
 		</div>
 
 		<!------------------------------------------------------------------------->
 		<div class="formfield">
-			<label for="reg_lastname">Ort *</label>
-			<input id="reg_lastname" type="text" name="city" />
+			<label for="reg_city">Ort *</label>
+			<input id="reg_city" type="text" name="city" />
+		</div>
+
+		<!------------------------------------------------------------------------->
+		<div class="formfield">
+			<label for="reg_country">Land *</label>
+			<select id="reg_country" name="country">
+				<option value="de" selected>Deutschland</option>
+				<option value="at">Österreich</option>
+				<option value="ch">Schweiz</option>
+				<option disabled>--</option>
+
+				{% for country, name in regSkel["country"]["values"].items() %}
+					{% if country in ["de", "at", "ch"] %}
+						{% continue %}
+					{% endif %}
+					<option value="{{ country }}">{{ name }}</option>
+				{% endfor %}
+			</select>
+
 		</div>
 
 		<!------------------------------------------------------------------------->
@@ -95,7 +116,7 @@
 
         <!------------------------------------------------------------------------->
         <div class="formfield">
-            <label for="reg_persons">Wie viele Personen seid ihr?</label>
+            <label for="reg_persons">Wieviele Personen kommen mit?</label>
             <select id="reg_persons" name="persons">
                 {% for i in [1, 2, 3, 4, 5, 6, 7, 8, 9] %}
                     <option value="{{ i }}" {{ 'selected="selected"' if i == 1 }}>{{ i }}</option>
@@ -112,7 +133,7 @@
             <label for="reg_camping">Camping</label>
             <div id="reg_camping">
                 <input id="reg_camping_no" type="radio" name="camping" value="0" checked="">
-                <label for="reg_camping_no">Nein, ich/wir übernachten nicht oder ausserhalb.</label>
+                <label for="reg_camping_no">Nein, ich/wir übernachten ausserhalb.</label>
                 <br />
                 <input id="reg_camping_yes" type="radio" name="camping" value="1">
                 <label for="reg_camping_yes">Ja</label><br />
@@ -120,12 +141,9 @@
         </div>
 
         <div class="optional-section" id="camping_section">
-            <!--
             <p>
-                Für das Camping steht Strom? bereit
-                Kosten???
+				Die Campinggebühr für den Wettbewerb beträgt xxx€.
             </p>
-            -->
 
             <div class="formfield">
                 <label for="reg_camping_kind">Wo schläfst du / schlaft ihr?</label>
@@ -155,16 +173,28 @@
 
         <div class="optional-section" id="aircraft_section">
             <p>
-                Bitte gib uns ein paar genauere Informationen über dein Flugzeug, und wie du
-                zu uns findest. Wenn du ein Foto hochlädst, würden wir dieses nach vorheriger
-                Prüfung gerne hier auf der Homepage veröffentlichen.<br />
+				Das hier angegebene Flugzeug nimmt am Wettbewerb teil.<br>
+				Die Nenngebühr beträgt je angemeldetes Flugzeug und Pilot 100€.<br>
+				Für jeden weiteren Piloten (max. 2) erhöht sich die Nenngebühr um 25€.
+			</p>
+			<p>
+                Wenn du ein Foto hochlädst, würden wir dieses nach vorheriger
+                Prüfung gerne hier auf der Homepage veröffentlichen.<br><br>
 
-                Achte bei dem Foto bitte darauf, dass dein Flieger möglichst mittig abgebildet ist.
+                Achte bei dem Foto bitte darauf, dass dein Flieger möglichst mittig abgebildet ist.<br>
                 Der Veröffentlichung deines Fotos kannst du jederzeit wiedersprechen.
                 Das Recht am Bild verbleibt bei dir.
             </p>
 
-            <p>Es ist festzuhalten, dass jeder für die Einhaltung der gesetzlichen Anforderungen selber verantwortlich ist. Wir werden keine Papiere überprüfen, es kann natürlich aber sein, dass die Aufsichtsbehörde solche Kontrollen durchführt.</p>
+			<div class="formfield">
+				<label for="reg_aircraft_pilot2">Name zweiter Pilot/-in</label>
+				<input id="reg_aircraft_pilot2" type="text" name="aircraft_pilot2" />
+			</div>
+
+			<div class="formfield">
+				<label for="reg_aircraft_pilot3">Name dritter Pilot/-in</label>
+				<input id="reg_aircraft_pilot3" type="text" name="aircraft_pilot3" />
+			</div>
 
             <div class="formfield">
                 <label for="reg_aircraft_type">Flugzeugtyp *</label>
@@ -182,7 +212,7 @@
             </div>
 
             <div class="formfield">
-                <label for="reg_aircraft_wb">WB-Kennzeichen</label>
+                <label for="reg_aircraft_wb">WB-Kennzeichen *</label>
                 <input id="reg_aircraft_wb" type="text" length="3" name="aircraft_wb" />
             </div>
 
@@ -193,7 +223,7 @@
 
             <div class="formfield">
                 <label for="reg_aircraft_werkno">Werk-Nr.</label>
-                <input id="reg_aircraft_werkno" type="numeric" length="3" name="reg_aircraft_werkno" />
+                <input id="reg_aircraft_werkno" type="numeric" length="3" name="aircraft_werkno" />
             </div>
 
             <div class="formfield">
@@ -222,13 +252,17 @@
 		<!------------------------------------------------------------------------->
 		<div class="formfield">
 			<input id="reg_accept_wb" type="checkbox" name="accept_wb" value="1">
-			<label for="reg_accept_wb">Ich akzeptiere die Wettbewerbsordnung.</label>
+			<label for="reg_accept_wb">Ich akzeptiere die <a href="/#ausschreibung" target="_blank">Wettbewerbsordnung</a>.</label>
 		</div>
 
 		<!------------------------------------------------------------------------->
 		<div class="formfield">
 			<input id="reg_accept_dsgvo" type="checkbox" name="accept_dsgvo" value="1">
-			<label for="reg_accept_dsgvo">Ich willige ein ... DSGVO bla.</label>
+			<label for="reg_accept_dsgvo">
+				Ich bin damit einverstanden, dass meine angegebenen Daten zum Zwecke der Bearbeitung meiner Anmeldung gespeichert und weiterverarbeitet werden dürfen.<br><br>
+				Hierbei willige ich auch ein, dass mein Vor- und Nachname (evtl. Namen weiterer Piloten), mein Heimatverein sowie das Kennzeichen, Wettbewerbskennzeichen und ggf. Foto meines Flugzeugs auf dieser Webseite im Rahmen des Wettbewerbs
+				für jeden Besucher der Webseite einsehbar sind.<br><br>
+				Eine Übermittlung sonstiger persönlicher Daten an Dritte findet nicht statt.</label>
 		</div>
 
 	</div>
@@ -249,3 +283,19 @@
     Nachricht über das <a href="#kontakt">Kontaktformular</a>.</p>
 
 </div>
+
+<!-- SECTION ------------------------------------------------------------------>
+{{ headline("Teilnehmer") }}
+
+{% set skellist = getList("reg", **{"amount":64, "visible": "1", "aircraft": "1", "aircraft_ignore": "0",
+                                    "orderby": "creationdate", "orderdir": "1"}) or [] %}
+
+<table class="glasfluegel">
+	<tr>
+		<th>Bild</th>
+		<th>Name</th>
+		<th>Typ</th>
+		<th>Kennzeichen</th>
+	</tr>
+	{%- include "reg_list_next.html" -%}
+</table>

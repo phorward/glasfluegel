@@ -21,12 +21,14 @@ class appconfSkel(Skeleton):
 		locals()["%s_menuname" % sect] = stringBone(
 			descr=u"Menüname",
 			required=True,
+			defaultValue=sect,
 			params={"category": catName}
 		)
 
 		locals()["%s_headline" % sect] = stringBone(
 			descr=u"Titel",
 			required=True,
+			defaultValue=sect,
 			params={"category": catName}
 		)
 
