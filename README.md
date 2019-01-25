@@ -2,9 +2,9 @@
 
 Welcome!
 
-This is the source code of [https://www.glasfluegel.net], a website about the GLASFLÜGEL sailplane manufacturer from Germany, which was active from the 1960s to 1980s and a pioneer in composite technology aircraft production. Because this website and its community is mostly located in german-speaking countries, the rest of this README is in german, but you can ask any question if further assistance is needed.
+This is the source code of https://www.glasfluegel.net, a website about the GLASFLÜGEL sailplane manufacturer from Germany, which was active from the 1960s to 1980s and a pioneer in composite technology aircraft production. Because this website and its community is mostly located in german-speaking countries, the rest of this README is in german, but you can ask any question if further assistance is needed.
 
-This website is entirely established on (ViUR)[https://viur.is]. ViUR is a free software development framework written in Python and providing a powerful SDK to develop web-apps running on the Google App Engine platform.
+This website is entirely established on [ViUR](https://viur.is). ViUR is a free software development framework written in Python and providing a powerful SDK to develop web-apps running on the Google App Engine platform.
 
 ## Build the Vi
 
