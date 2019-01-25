@@ -4,7 +4,7 @@ Subject:Kontaktanfrage Glasflügel-Cup 2019
 	<p>Hallo!</p>
 
 	<p>Es wurde eine neue Kontaktanfrage von <a href="mailto:{{ skel["email"] }}">{{ skel["email"] }}</a> gestellt:</p>
-	<pre>{{ skel["descr"] }}</pre>
+	<pre style="font-size: 15pt;">{{ skel["descr"] }}</pre>
 
 </body>
 </html>

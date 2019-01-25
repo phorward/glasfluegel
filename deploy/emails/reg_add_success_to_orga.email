@@ -5,9 +5,9 @@ Subject:Neue Anmeldung zum Glasflügel-Cup 2019
 
 {% set struct = getSkel("reg", "addSkel") %}
 
-{% for fld in ["title", "firstname", "lastname", "email", "club", "city", "phone", "persons", "camping", "camping_kind"] %}
+{% for fld in ["title", "firstname", "lastname", "club", "street", "zipcode", "city", "country", "email", "phone", "persons", "camping", "camping_kind"] %}
     {% if fld == "camping_kind" and not skel["camping"] %}
-    {% continue %}
+    	{% continue %}
     {% endif %}
 
     <span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
@@ -15,17 +15,16 @@ Subject:Neue Anmeldung zum Glasflügel-Cup 2019
 {% endfor %}
 
 {% if skel["aircraft"] %}
-<p>Ausserdem wurde folgendes Flugzeug registriert:</p>
+	<p>Folgendes Flugzeug wurde registriert:</p>
 
-{% for fld in ["aircraft_type", "aircraft_reg", "aircraft_wb"] %}
-    <span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
-    <strong>{{ _((skel[fld].descr or skel[fld])|string) }}</strong><br />
-{% endfor %}
-
+	{% for fld in ["aircraft_type", "aircraft_reg", "aircraft_wb", "aircraft_pilot2", "aircraft_pilot3"] %}
+		<span style="width: 200px; display: inline-block;">{{ struct[fld]["descr"] }}:</span>
+		<strong>{{ _((skel[fld].descr or skel[fld])|string) }}</strong><br />
+	{% endfor %}
 {% endif %}
 
 {% if skel["remarks"] %}
-<p>Es wurde folgende Bemerkung hinterlassen:</p>
+	<p>Es wurde eine Bemerkung hinterlassen:</p>
     <strong>{{ skel["remarks"] }}</strong>
 {% endif %}
 
