@@ -376,7 +376,7 @@ div.formsuccess {
   background-color: #fff;
 }
 .mainnavigation .logo a {
-  background: url(../images/glasfluegel_logo.svg);
+  background: url(../images/glasfluegel_logo_cup.svg);
   display: block;
   padding: 0;
   height: 48px;
@@ -390,7 +390,7 @@ div.formsuccess {
   overflow: hidden;
 }
 .mainnavigation .logo.is-scrolled {
-  width: 60px;
+  width: 110px;
 }
 /*
     SITESTRUCTURE
@@ -796,7 +796,6 @@ input[type="search"] {
 .paralax {
   height: 400px;
   width: 100%;
-  /* background-image: url(../images/flyin.jpg); */
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;

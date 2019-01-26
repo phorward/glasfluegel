@@ -40,7 +40,7 @@ conf["viur.forceSSL"] = True
 # Project configuration
 #
 
-conf["sections"] = ["start", "glasfluegel", "news", "ausschreibung", "register", "kontakt"]
+conf["sections"] = ["start", "news", "ausschreibung", "register", "glasfluegel", "kontakt"]
 
 # ------------------------------------------------------------------------------
 # Language-specific configuration
