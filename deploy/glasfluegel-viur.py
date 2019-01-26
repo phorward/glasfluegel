@@ -30,8 +30,8 @@ from server import conf
 # General configuration
 #
 
+conf["viur.security.contentSecurityPolicy"] = {}
 conf["viur.forceSSL"] = True
-#conf["viur.disableCache"] = True
 
 #conf["viur.exportPassword"] = "xxx"
 #conf["viur.importPassword"] = "xxx"
@@ -53,14 +53,9 @@ conf["sections"] = ["start", "glasfluegel", "news", "ausschreibung", "register",
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "glasfluegel-viur"
+conf["admin.vi.name"] = u"Glasflügel"
 #conf["admin.vi.logo"] = "/static/meta/logo.svg"
 
-# ------------------------------------------------------------------------------
-# Content Security Policy
-#
-
-conf["viur.security.contentSecurityPolicy"] = {}
 
 # ------------------------------------------------------------------------------
 # Bugsnag: Tell us what is wrong!

@@ -5,7 +5,24 @@
 /* Orange */
 /* FONT AND CSS IMPORT */
 @import url(reset.css);
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7g.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdr.ttf) format('truetype');
+}
 /*
     FUNDAMENTALS
 */
@@ -159,21 +176,21 @@ table.airportinfo td {
   text-align: left;
   padding: 8px;
 }
-table.glasfluegel {
+table {
   border-collapse: collapse;
   width: 100%;
 }
-table.glasfluegel th {
+table th {
   color: #ec6a50;
   font-weight: bold;
   padding: 15px;
 }
-table.glasfluegel th,
-table.glasfluegel td {
+table th,
+table td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-table.glasfluegel td {
+table td {
   padding: 8px;
 }
 tr:nth-child(even) {
@@ -385,7 +402,7 @@ div.formsuccess {
 }
 .contentbody > h2 a {
   float: right;
-  font-size: .7em;
+  font-size: 0.7em;
   line-height: 2.3;
 }
 .contentbody > h3,
@@ -395,7 +412,7 @@ div.formsuccess {
 }
 .contentbody > h4 {
   color: #999;
-  font-size: .9em;
+  font-size: 0.9em;
   margin-top: 15px;
 }
 .wht .contentbody > h2 {
@@ -422,7 +439,7 @@ aside {
   width: 25%;
   float: left;
   margin-right: 2%;
-  font-size: .85em;
+  font-size: 0.85em;
 }
 aside.right {
   margin-right: 0;
@@ -462,8 +479,8 @@ ul.boxes .image {
   height: 300px;
   background-image: url(../images/bg-maincolor.jpg);
   background-size: cover;
-  opacity: .8;
-  transition: opacity .5s ease;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
 }
 ul.boxes li:hover .image {
   opacity: 1;
@@ -482,7 +499,7 @@ ul.boxes .matter h3 {
   color: #fff;
 }
 ul.boxes .matter span {
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 0 15px 10px;
   display: block;
 }
@@ -575,7 +592,7 @@ ul.boxes.five li:hover .matter {
   opacity: 0;
 }
 .shout.boxes .image.is-active {
-  opacity: .9;
+  opacity: 0.9;
   pointer-events: auto;
   cursor: pointer;
 }
@@ -654,7 +671,7 @@ section.component .image img {
   width: 100%;
 }
 section.component > .matter {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   float: left;
   width: 49%;
   min-height: 100px;
@@ -667,7 +684,7 @@ section.component > .matter h2 {
   font-weight: 300;
 }
 section.component > .matter p {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 section.component > a.matter p {
   color: #000;
@@ -709,7 +726,7 @@ input[type="submit"],
 a.button {
   -webkit-appearance: none;
   border-radius: 0;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   color: #444;
   display: inline-block;
   margin-right: 10px;
@@ -719,7 +736,7 @@ a.button {
 a.button,
 button.slim {
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
   padding: 3px 9px;
   border: 1px solid #ccc;
   background: #e6e6e6;
@@ -743,7 +760,7 @@ a.action {
   padding: 9px 12px;
   border: 1px solid #932610;
   background-color: #ec6a50;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
 input[type="submit"].order.primary,
 button.primary.action,
@@ -859,7 +876,7 @@ footer ul {
   aside {
     width: 100%;
     float: left;
-    font-size: .85em;
+    font-size: 0.85em;
   }
   .no-mobil {
     display: none;

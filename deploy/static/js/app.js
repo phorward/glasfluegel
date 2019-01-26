@@ -466,6 +466,8 @@ $(document).ready(function () {
 					$("#news-all").parent().append(html);
 				}
 			});
+
+			return false;
 		}
 	);
 

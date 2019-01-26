@@ -44,7 +44,7 @@ class appconfSkel(Skeleton):
 		)
 
 		locals()["%s_static" % sect] = booleanBone(
-			descr=u"Statisch",
+			descr=u"Statische Seite 'content-%s.html' benutzen" % sect,
 			defaultValue=True,
 			params={"category": catName}
 		)
