@@ -4,7 +4,7 @@
 # Do custom plugin imports and customized settings here.
 
 # Plugin imports
-#import vi_plugins.bones
+import vi_plugins.bones
 
 # Vi config
 from config import conf

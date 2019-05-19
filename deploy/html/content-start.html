@@ -1,8 +1,19 @@
 {% from "macros/macros.html" import image, gallery, headline %}
+{% from "macros/utils.html" import getImageSrc %}
 
 <p>...auf unserer Webseite!</p>
 
 <p>Wir haben es uns zur Aufgabe gemacht den Konstrukteur und Pionier der Segelfliegerei <strong>Eugen Hänle</strong> und seine Firma <strong>GLASFLÜGEL</strong> in Erinnerung zu halten. Dafür organisieren wir zusammen mit der <a href="http://www.fliegergruppe-badsaulgau.de/" target="_blank">Fliegergruppe in Bad Saulgau</a> auf deren Flugplatz, dem ehemaligen Ort der Montage und Fertigung von GLASFLÜGEL, Veranstaltungen von und für Glasflügel-Freunde, wie z.B. das <strong>Glasflügel FlyIn 2016</strong> und nun den <strong><a href="#ausschreibung">Glasflügel Cup 2019</a></strong>, der vom <strong>12. - 16. Juni 2019</strong> stattfinden soll.
 	Ausserdem informieren wir hier über <a href="#glasfluegel">die Geschichte hinter GLASFLÜGEL</a> und was es sonst noch so an <a href="#news">aktuellen Neuigkeiten</a> zu diesem Thema gibt.</p>
+
+{% set sponsors = getList("sponsor", active=1, orderby="sortindex") %}
+{% if sponsors %}
+	<p>
+		Unser ausdrücklicher Dank gilt auch unseren Sponsoren, die dieses Event erst möglich machen:<br>
+		{% for sponsor in sponsors %}
+			<a href="{{ sponsor.link }}" class="sponsor" style="background-image: url({{ getImageSrc(sponsor.logo) }}" target="_blank" title="{{ sponsor.name }}" alt="Logo von {{ sponsor.name }}"></a>
+		{% endfor %}
+	</p>
+{% endif %}
 
 <p>Diese Webseite ist übrigens ein freies Open Source Projekt auf <a href="https://github.com/phorward/glasfluegel" target="_blank">GitHub</a>. Jeder kann mitmachen, Unterstützung in jeglicher Form, ob Fotos, Inhalte, Design oder sogar Programmierung sind jederzeit gerne Willkommen!</p>

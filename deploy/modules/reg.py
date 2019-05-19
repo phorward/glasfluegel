@@ -14,7 +14,6 @@ class reg(List):
 		"name": u"Anmeldungen",
 		"handler": "list",
 		"icon": "icons/modules/shoutbox.svg",
-		"sortIndex": -20,
 		"filter": {"orderby": "creationdate", "orderdir": "1"},
 		"columns": ["email", "firstname", "lastname", "persons", "visible",
 					"aircraft_type", "aircraft_reg",

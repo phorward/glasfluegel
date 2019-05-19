@@ -105,7 +105,7 @@ class regSkel(Skeleton):
 
 	aircraft_ignore = booleanBone(
 		descr=u"Flugzeug ignorieren",
-		params={"category": u"Flugzeug"},
+		params={"category": u"Freigaben"},
 		indexed=True,
 		defaultValue=False
 	)
@@ -165,7 +165,7 @@ class regSkel(Skeleton):
 	)
 	aircraft_pic_ok = booleanBone(
 		descr=u"Bild geprüft und sichtbar?",
-	    params={"category": u"Flugzeug"},
+	    params={"category": u"Freigaben"},
 	    indexed=True,
 	    defaultValue=False
 	)
@@ -264,19 +264,26 @@ class regSkel(Skeleton):
 	'''
 
 	# Sonstiges
-	frameprog = textBone(descr=u"Rahmenprogramm")
+	#frameprog = textBone(descr=u"Rahmenprogramm")
 	remarks = textBone(descr=u"Bemerkungen")
-	qremarks = textBone(descr=u"Was ich unbedingt noch loswerden möchte")
-	visible = booleanBone(descr=u"Sichtbar", indexed=True, defaultValue=False)
+	#qremarks = textBone(descr=u"Was ich unbedingt noch loswerden möchte")
+	visible = booleanBone(
+		descr=u"Teilnehmer sichtbar auf Website",
+		indexed=True,
+		defaultValue=False,
+		params={"category": u"Freigaben"}
+	)
 
-	questionaire_sent = booleanBone(descr=u"Fragebogen erhalten", defaultValue=False, indexed=True)
-	questionaire_filled = booleanBone(descr=u"Fragebogen ausgefüllt", defaultValue=False, indexed=True)
+	#questionaire_sent = booleanBone(descr=u"Fragebogen erhalten", defaultValue=False, indexed=True)
+	#questionaire_filled = booleanBone(descr=u"Fragebogen ausgefüllt", defaultValue=False, indexed=True)
 
-	code = stringBone(descr=U"Bearbeitungscode", readOnly=True)
+	#code = stringBone(descr=U"Bearbeitungscode", readOnly=True)
 
-	nomail = booleanBone(descr=u"Keine E-Mails an Teilnehmer versenden", defaultValue=False)
-
-	slideshow = booleanBone(descr=u"Slideshow", defaultValue=False, indexed=True)
+	nomail = booleanBone(
+		descr=u"Keine E-Mails an Teilnehmer versenden",
+		defaultValue=False,
+		params={"category": u"Flugzeug"}
+	)
 
 	def toDB(self, *args, **kwargs):
 		if "viewname" in self.keys():
@@ -285,8 +292,5 @@ class regSkel(Skeleton):
 
 		if "code" in self.keys() and not self["code"]:
 			self["code"] = utils.generateRandomString()
-
-		#if "slideshow" in self.keys():
-		#	self["slideshow"].value = self["visible"].value and self["aircraft_pic_ok"].value and not self["aircraft_ignore"].value
 
 		return super(regSkel, self).toDB(*args, **kwargs)

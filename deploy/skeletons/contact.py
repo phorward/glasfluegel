@@ -3,7 +3,6 @@ from server.skeleton import Skeleton
 from server.bones import *
 
 class contactSkel(Skeleton):
-	entityName = None
 	key = None
 
 	email= emailBone(descr="E-Mail", required=True)

@@ -4,8 +4,8 @@ from server import utils
 
 class file(File):
 
-	def canAdd(self, type, skel):
-		return type == "leaf"
+	#def canAdd(self, type, skel):
+	#	return type == "leaf"
 
 	def getAvailableRootNodes(self, name, *args, **kwargs):
 		thisuser = utils.getCurrentUser()

@@ -1,3 +1,5 @@
+![Glasflügel Logo](deploy/static/images/glasfluegel_logo_full.svg)
+
 # glasfluegel.net
 
 Welcome!

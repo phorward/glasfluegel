@@ -4,7 +4,6 @@ from server.skeleton import Skeleton
 from server.config import conf
 
 class appconfSkel(Skeleton):
-	kindName = "appconf"
 
 	recipients = stringBone(
 		descr=u"E-Mail-Empfänger",

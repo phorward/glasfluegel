@@ -1,1 +1,43 @@
 /* This is a place to define custom Vi stylings that only relate to the Vi. */
+
+/* Sortindex Bone */
+
+.vi-sortindex-wrap {
+  padding: 0;
+}
+
+.vi-sortindex {
+  transition: all ease .3s;
+  padding: 7px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+
+  cursor: pointer;
+
+  &:after {
+    //background-image: url(icons/actions/draggable.svg);
+    background-image: url(icons/actions/draggable.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+    content: ' ';
+    position: relative;
+    margin-right: 7px;
+  }
+}
+
+.vi-sortindex-can-drop {
+  background-color: #ddd;
+}
+
+.vi-sortindex-is-dragged {
+  background-color: #BE1622;
+  color: #fff;
+}
+

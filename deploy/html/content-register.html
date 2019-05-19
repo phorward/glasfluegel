@@ -287,8 +287,7 @@
 <!-- SECTION ------------------------------------------------------------------>
 {{ headline("Teilnehmer") }}
 
-{% set skellist = getList("reg", **{"amount":64, "visible": "1", "aircraft": "1", "aircraft_ignore": "0",
-                                    "orderby": "creationdate", "orderdir": "1"}) or [] %}
+{% set skellist = getList("reg", **{"amount":64, "visible": "1", "orderby": "creationdate", "orderdir": "1"}) or [] %}
 
 <table class="glasfluegel">
 	<tr>
