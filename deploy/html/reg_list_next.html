@@ -47,8 +47,8 @@
 				, {{ entry["aircraft_pilot3"] }}
 			{%- endif -%}
 				
-            {% if persons > 1 %}
-                <sub>und {{ persons }} weitere Personen</sub>
+            {% if persons > 0 %}
+                <sub>und {{ persons }} weitere Person{% if persons > 1 %}en{% endif %}</sub>
             {% endif %}
 
             {% if entry["club"] %}
