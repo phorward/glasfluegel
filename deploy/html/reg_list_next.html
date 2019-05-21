@@ -17,7 +17,7 @@
     {% endif %}
         <td>
             {% if entry["aircraft"] and entry["aircraft_pic"] and entry["aircraft_pic_ok"] %}
-                {{ image(entry["aircraft_pic"]["servingurl"], group="dabei", size=200, align="left", crop=True) }}
+                {{ image(entry["aircraft_pic"]["servingurl"], title=entry["aircraft_reg"], group="dabei", size=200, align="left", crop=True) }}
             {% else %}
                 <div class="image image-left">
                     <img src="/static/images/nopicture.jpg" title="Kein Bild hinterlegt" alt="Kein Bild hinterlegt" />
