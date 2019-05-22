@@ -10,13 +10,15 @@
 
 {% set sponsors = getList("sponsor", active=1, orderby="sortindex") %}
 {% if sponsors %}
-	<p style="background-color: white; padding: 2px; text-align: center;">
+	<p style="background-color: white; padding: 2px 10px; text-align: center;">
 		Unser ausdrücklicher Dank gilt unseren Sponsoren, die dieses ehrenamtliche Unterfangen überhaupt erst möglich machen:<br>
 		{% for sponsor in sponsors %}
 			<a href="{{ sponsor.link }}" class="sponsor" style="background-image: url({{ getImageSrc(sponsor.logo) }}" target="_blank" title="{{ sponsor.name }}" alt="Logo von {{ sponsor.name }}"></a>
-			{% if loop.index % 5 == 0 and not loop.last %}
-				<br>
-			{% endif %}
+			{#
+				{% if loop.index % 5 == 0 and not loop.last %}
+					<br>
+				{% endif %}
+			#}
 		{% endfor %}
 	</p>
 {% endif %}
