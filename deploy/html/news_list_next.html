@@ -14,7 +14,7 @@
 
 	{% if entry["images"] and entry["images"]|length > 1 %}
 		{% for pic in entry["images"] %}
-			{{ image(pic["servingurl"], crop=True) }}
+			{{ image(pic["servingurl"], crop=True, group=entry.key|string) }}
 		{% endfor %}
 	{% endif %}
 

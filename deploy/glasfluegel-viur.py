@@ -40,7 +40,7 @@ conf["viur.forceSSL"] = True
 # Project configuration
 #
 
-conf["sections"] = ["start", "news", "ausschreibung", "register", "glasfluegel", "kontakt"]
+conf["sections"] = ["start", "news", "wertung", "ausschreibung", "register", "glasfluegel", "kontakt"]
 
 # ------------------------------------------------------------------------------
 # Language-specific configuration
@@ -55,13 +55,6 @@ conf["sections"] = ["start", "news", "ausschreibung", "register", "glasfluegel",
 
 conf["admin.vi.name"] = u"Glasflügel"
 #conf["admin.vi.logo"] = "/static/meta/logo.svg"
-
-
-# ------------------------------------------------------------------------------
-# Bugsnag: Tell us what is wrong!
-#
-
-#conf["bugsnag.apiKey" ] = "INSERT YOUR BUGSNAG API KEY HERE"
 
 # ------------------------------------------------------------------------------
 # Server startup

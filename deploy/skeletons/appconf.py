@@ -19,7 +19,8 @@ class appconfSkel(Skeleton):
 		catName = "%d - %s" % (i, sect)
 
 		locals()["%s_active" % sect] = booleanBone(
-			descr=u"Aktiv", defaultValue=True,
+			descr=u"Aktiv",
+			defaultValue=True,
 			params={"category": catName}
 		)
 
@@ -43,8 +44,8 @@ class appconfSkel(Skeleton):
 		)
 
 		locals()["%s_static" % sect] = booleanBone(
-			descr=u"Statische Seite 'content-%s.html' benutzen" % sect,
-			defaultValue=True,
+			descr=u"Template 'content-%s.html' verwenden" % sect,
+			defaultValue=False,
 			params={"category": catName}
 		)
 
