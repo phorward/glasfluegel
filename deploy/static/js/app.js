@@ -145,7 +145,7 @@ $(document).ready(function () {
                 $("#aircraft_section").fadeOut("slow");
         });
 
-    if(document.getElementById("reg_aircraft_yes").checked)
+    if(document.getElementById("reg_aircraft_yes") && document.getElementById("reg_aircraft_yes").checked)
         $("#aircraft_section").show();
 
     $("input[name=camping]").on("change",
@@ -157,7 +157,7 @@ $(document).ready(function () {
                 $("#camping_section").fadeOut("slow");
         });
 
-    if(document.getElementById("reg_camping_yes").checked)
+    if(document.getElementById("reg_camping_yes") && document.getElementById("reg_camping_yes").checked)
         $("#camping_section").show();
 
     // Bild hochladen! :)
@@ -453,9 +453,10 @@ $(document).ready(function () {
     $("input[type=submit]").removeAttr("disabled");
 
     // News nachladen
-	$("#news-all").click(
+	$("#news-all").on("click",
 		function()
 		{
+			console.log("1");
 			$("#news-all").hide();
 			$.ajax({
 				type: "GET",
@@ -463,6 +464,7 @@ $(document).ready(function () {
 				dataType : 'html',
 				cache: false,
 				success : function(html){
+					console.log("2");
 					$("#news-all").parent().append(html);
 				}
 			});
