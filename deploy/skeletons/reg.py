@@ -33,7 +33,10 @@ class regSkel(Skeleton):
 	title = selectBone(
 		descr=u"Anrede",
 		required=True,
-		values={"m": u"Herr", "f": u"Frau"}
+		values={
+			"m": u"Herr",
+			"f": u"Frau"
+		}
 	)
 	viewname = stringBone(
 		descr=u"Anzeigename",
@@ -269,6 +272,13 @@ class regSkel(Skeleton):
 	#qremarks = textBone(descr=u"Was ich unbedingt noch loswerden möchte")
 	visible = booleanBone(
 		descr=u"Teilnehmer sichtbar auf Website",
+		indexed=True,
+		defaultValue=False,
+		params={"category": u"Freigaben"}
+	)
+
+	share = booleanBone(
+		descr=u"Kontaktdaten mit anderen Glasflüglern teilen",
 		indexed=True,
 		defaultValue=False,
 		params={"category": u"Freigaben"}
