@@ -48,7 +48,7 @@ $ gcloud app deploy -q --project=glasfluegel --version=`date +"%Y-%m-%d"-$USER`
 
 ## License
 
-This website and software is Copyright (C) 2016-2019 by Jan Max Meyer.
+This website and software is Copyright (C) 2016-2021 by Jan Max Meyer.
 
 It is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE.
 

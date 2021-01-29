@@ -48,7 +48,7 @@
 
         {% macro output(skel, name, title = "") %}
             {% if title %}
-                {{ title }}<br />
+                {{ title }}<br>
             {% endif %}
 
 			<span class="outputvalue">{{ skel["value"][name] or "(leer)" }}</span>
@@ -57,7 +57,7 @@
 
         {% macro input(skel, name, title = "") %}
             {% if title %}
-                {{ title }}<br />
+                {{ title }}<br>
             {% endif %}
 
             <input type="text" name="{{ name }}" value="{{ skel["value"][name] if skel["value"][name] }}" />
@@ -65,7 +65,7 @@
 
         {% macro textarea(skel, name, title = "") %}
             {% if title %}
-                {{ title }}<br />
+                {{ title }}<br>
             {% endif %}
 
             <textarea name="{{ name }}">{{ skel["value"][name] or "" }}</textarea>
@@ -73,7 +73,7 @@
 
         {% macro numeric(skel, name, title = "", min=0, max=9) %}
             {% if title %}
-                {{ title }}<br />
+                {{ title }}<br>
             {% endif %}
 
             <input type="number"
@@ -105,7 +105,7 @@
         <h1>Fragebogen für {{ skel["value"]["viewname"] }}</h1>
 
         <p>In diesem Fragebogen werden nun ergänzend noch einige Punkte abgefragt, die uns helfen,
-            das FlyIn besser zu organisieren.<br />
+            das FlyIn besser zu organisieren.<br>
             Alles weitere findet ihr in der E-Mail, welche euch zugeschickt worden ist,
             und den Link auf diesen Fragebogen enthält.</p>
 
@@ -115,7 +115,7 @@
         bitte per <a href="mailto:info@glasfluegel.net">E-Mail an info@glasfluegel.net</a> mit.</p>
 
         <ul>
-			<li>Name<br />
+			<li>Name<br>
                 <span class="outputvalue">
                     {{ skel["value"]["firstname"] }} {{ skel["value"]["lastname"] }}
                 </span>
@@ -131,19 +131,19 @@
         <ul>
             <li>{{ numeric(skel, "vegetarier", "Wie viele Vegetarier kommen mit?", max=skel["value"]["persons"]) }}</li>
             <li>
-                {{ checkbox(skel, "camping", "Ja, ich möchte am Flugplatz Bad Saulgau campen") }}<br />
+                {{ checkbox(skel, "camping", "Ja, ich möchte am Flugplatz Bad Saulgau campen") }}<br>
             </li>
             <li>
-                Wenn du campst, wie campst du?<br />
+                Wenn du campst, wie campst du?<br>
 
-                {{ radio(skel, "camping_kind", "tent", "Zelt") }}<br />
+                {{ radio(skel, "camping_kind", "tent", "Zelt") }}<br>
                 {{ radio(skel, "camping_kind", "caravan", "Wohnmobil/Wohnwagen") }}
             </li>
             <li>
-                An welchen Tagen bist du mit dabei?<br />
+                An welchen Tagen bist du mit dabei?<br>
 
-                {{ checkbox(skel, "tag_fr", "Freitag, 12.08.2016") }}<br />
-                {{ checkbox(skel, "tag_sa", "Samstag, 13.08.2016", disabled = True) }}<br />
+                {{ checkbox(skel, "tag_fr", "Freitag, 12.08.2016") }}<br>
+                {{ checkbox(skel, "tag_sa", "Samstag, 13.08.2016", disabled = True) }}<br>
                 {{ checkbox(skel, "tag_so", "Sonntag, 14.08.2016") }}
             </li>
         </ul>
@@ -155,7 +155,7 @@
 
             <ul>
                 <li>
-                    Foto<br />
+                    Foto<br>
                     {% if skel["value"]["aircraft_pic"] %}
                         <img src="{{ skel["value"]["aircraft_pic"]["servingurl"] }}=s500" />
                     {% else %}
@@ -166,9 +166,9 @@
                 <li>{{ output(skel, "aircraft_reg", "Kennzeichen") }}</li>
                 <li>{{ output(skel, "aircraft_wb", "Wettbewerbskennung") }}</li>
                 <li>
-                   Wie kommt dein Flugzeug zum FlyIn?<br />
+                   Wie kommt dein Flugzeug zum FlyIn?<br>
 
-                    {{ radio(skel, "aircraft_transport", "trailer", "per Anhänger") }}<br />
+                    {{ radio(skel, "aircraft_transport", "trailer", "per Anhänger") }}<br>
                     {{ radio(skel, "aircraft_transport", "flight", "per Luft") }}
                 </li>
             </ul>
@@ -179,20 +179,20 @@
                 <li>{{ numeric(skel, "aircraft_bj", "Baujahr", min=None, max=None) }}</li>
                 <li>{{ numeric(skel, "aircraft_werkno", "Werk-Nr", min=None, max=None) }}</li>
                 <li>
-                    Möchtest du dein Flugzeug nur ausstellen oder auch wirklich fliegen?<br />
+                    Möchtest du dein Flugzeug nur ausstellen oder auch wirklich fliegen?<br>
 
-                    {{ radio(skel, "aircraft_flight", "1", "Ja, ich will fliegen!") }}<br />
-                    {{ radio(skel, "aircraft_flight", "0", "Nein, nur ausstellen") }}<br />
+                    {{ radio(skel, "aircraft_flight", "1", "Ja, ich will fliegen!") }}<br>
+                    {{ radio(skel, "aircraft_flight", "0", "Nein, nur ausstellen") }}<br>
                     {{ radio(skel, "aircraft_flight", "-", "Würde fliegen wenn das Wetter passt") }}
                 </li>
                 <li>
-                    Würdest du dein Flugzeug anderen Piloten zum Typenfliegen zur Verfügung stellen?<br />
+                    Würdest du dein Flugzeug anderen Piloten zum Typenfliegen zur Verfügung stellen?<br>
 
-                    {{ checkbox(skel, "aircraft_others", "Ja, mein Flugzeug darf von anderen geflogen werden") }}<br />
+                    {{ checkbox(skel, "aircraft_others", "Ja, mein Flugzeug darf von anderen geflogen werden") }}<br>
                     {{ input(skel, "aircraft_others_comment", "Du kannst uns dazu auch noch einen Kommentar hinterlassen:") }}
                 </li>
                 <li>
-                    Wenn gutes Wetter ist, möchtest du dein Flugzeug aufgerüstet lassen?<br />
+                    Wenn gutes Wetter ist, möchtest du dein Flugzeug aufgerüstet lassen?<br>
 
                     {{ checkbox(skel, "aircraft_nightup", "Ja, Flugzeug bleibt dann aufgerüstet.") }}
                 </li>
@@ -206,7 +206,7 @@
 
         {{ textarea(skel, "frameprog", "Ich kann zum Rahmenprogramm noch folgendes Beitragen:") }}
 
-        <br />
+        <br>
 
         {{ textarea(skel, "qremarks", "Was ich noch unbedingt loswerden möchte:") }}
 
@@ -241,46 +241,46 @@
 
 		<h3>T-Shirt "Glasflügel FlyIn 2016"</h3>
 
-        <img src="/static/images/tshirt-flyin.jpg" title="T-Shirt FlyIn" alt="Bild des T-Shirts" /><br />
+        <img src="/static/images/tshirt-flyin.jpg" title="T-Shirt FlyIn" alt="Bild des T-Shirts" /><br>
 
-		Glasflügel-Logo und FlyIn-Bild (gedruckt), abweichend vom Bild mit Rundkragen!<br />
+		Glasflügel-Logo und FlyIn-Bild (gedruckt), abweichend vom Bild mit Rundkragen!<br>
 		Preis: 12,50€ pro Stück.
 
 		{{ tshirt(skel, "tshirt_flyin") }}
 
 		<h3>T-Shirt "Glasflügel Logo"</h3>
 
-        <img src="/static/images/tshirt-logo.jpg" title="T-Shirt Logo" alt="Bild des T-Shirts" /><br />
+        <img src="/static/images/tshirt-logo.jpg" title="T-Shirt Logo" alt="Bild des T-Shirts" /><br>
 
-		Glasflügel-Logo ohne FlyIn-Bild (gedruckt), abweichend vom Bild mit Rundkragen!<br />
+		Glasflügel-Logo ohne FlyIn-Bild (gedruckt), abweichend vom Bild mit Rundkragen!<br>
 		Preis: 12,50€ pro Stück.
 
 		{{ tshirt(skel, "tshirt_logo") }}
 
 		<h3>Sweatshirt "Glasflügel"</h3>
 
-        <img src="/static/images/sweatshirt.jpg" title="Sweatshirt" alt="Bild des Sweatshirts" /><br />
+        <img src="/static/images/sweatshirt.jpg" title="Sweatshirt" alt="Bild des Sweatshirts" /><br>
 
-		Baumwoll-Sweatshirt mit Glasflügel-Logo, gestickt.<br />
+		Baumwoll-Sweatshirt mit Glasflügel-Logo, gestickt.<br>
 		Preis: 23,50€ pro Stück.
 
 		{{ tshirt(skel, "sweatshirt") }}
 
         <h3>Glasflügel-Cap</h3>
 
-        <img src="/static/images/gfcap.jpg" title="Cap" alt="Bild des Caps" /><br />
+        <img src="/static/images/gfcap.jpg" title="Cap" alt="Bild des Caps" /><br>
 
-		Baumwoll-Cappy mit Glasflügel-Logo, gestickt.<br />
-		Preis: 10€ pro Stück.<br /><br />
+		Baumwoll-Cappy mit Glasflügel-Logo, gestickt.<br>
+		Preis: 10€ pro Stück.<br><br>
 
-        {{ numeric(skel, "cap_white", "Anzahl Cap (weiß)") }}<br />
+        {{ numeric(skel, "cap_white", "Anzahl Cap (weiß)") }}<br>
         {{ numeric(skel, "cap_black", "Anzahl Cap (marine)") }}
 
 		<h3>Glasflügel-Becher</h3>
 
-        <img src="/static/images/tassen.jpg" title="Tassen" alt="Bild der Tassenmotive" /><br />
+        <img src="/static/images/tassen.jpg" title="Tassen" alt="Bild der Tassenmotive" /><br>
 
-        Glasflügel-Kaffeebecher mit Logo und Drei-Seiten-Ansicht verschiedener Flugzeugtypen.<br />
+        Glasflügel-Kaffeebecher mit Logo und Drei-Seiten-Ansicht verschiedener Flugzeugtypen.<br>
 		Preis: 10€ pro Stück, komplettes Set für 110€.
 
 		<table class="glasfluegel">
@@ -326,7 +326,7 @@
         <hr />
 
         <p>
-            Zu guter letzt bitte den nachfolgenden Button klicken, um deinen Fragebogen abzuschicken!<br />
+            Zu guter letzt bitte den nachfolgenden Button klicken, um deinen Fragebogen abzuschicken!<br>
             Du erhälst von uns eine Bestätigungsmail mit dem zu überweisenden Gesamtbetrag.
         </p>
 

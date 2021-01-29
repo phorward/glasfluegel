@@ -36,7 +36,7 @@
             {%- else -%}
                 {{- entry["firstname"] }} {{ entry["lastname"] -}}
             {%- endif -%}
-	
+
 			{%- if entry["aircraft_pilot2"] -%}
 				{%- set persons = persons - 1 -%}
 				, {{ entry["aircraft_pilot2"] }}
@@ -46,13 +46,13 @@
 				{%- set persons = persons - 1 -%}
 				, {{ entry["aircraft_pilot3"] }}
 			{%- endif -%}
-				
+
             {% if persons > 0 %}
                 <sub>und {{ persons }} weitere Person{% if persons > 1 %}en{% endif %}</sub>
             {% endif %}
 
             {% if entry["club"] %}
-                <br />
+                <br>
                 <i>{{ entry["club"] }}</i>
             {% endif %}
         </td>
@@ -60,7 +60,7 @@
         {% if entry["aircraft"] and not entry["aircraft_ignore"] %}
         <td>{{ entry["aircraft_type"].descr }}
             {% if entry["aircraft_werkno"] and entry["aircraft_bj"] %}
-                <br />
+                <br>
                 <i>Werk-Nr. {{ entry["aircraft_werkno"] }}, Baujahr {{ entry["aircraft_bj"] }}</i>
             {% endif %}
         </td>
