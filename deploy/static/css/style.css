@@ -388,12 +388,8 @@ div.formsuccess {
   background-repeat: no-repeat;
 }
 .mainnavigation .logo {
-  width: 1px;
-  transition: all 1.2s ease;
+  width: 95px;
   overflow: hidden;
-}
-.mainnavigation .logo.is-scrolled {
-  width: 110px;
 }
 /*
     SITESTRUCTURE
@@ -836,7 +832,7 @@ footer a:link,
 footer a:visited {
   color: #101854;
 }
-footer ul {
+footer div {
   margin: 0px auto;
   max-width: 1200px;
   padding: 20px 0;

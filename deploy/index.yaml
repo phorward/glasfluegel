@@ -26,6 +26,17 @@ indexes:
   - name: creationdate
     direction: desc
 
+- kind: page
+  properties:
+  - name: alias.idx
+  - name: online
+  - name: sortindex
+
+- kind: page
+  properties:
+  - name: online
+  - name: sortindex
+
 - kind: reg
   properties:
   - name: aircraft

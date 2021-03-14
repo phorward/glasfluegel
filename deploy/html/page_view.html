@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+	<section id="{{ skel["alias"] }}" class="{{ skel["alias"] }}">
+		<article>
+			<h1>{{ skel["name"] }}</h1>
+
+			{% if skel["alias"] == "start" %} {# fixme: This is Bullshit! #}
+			<div class="logo"></div>
+			{% endif %}
+
+			<div class="text">
+				{% if skel["static"] %}
+					{% include "content-%s.html" % skel["alias"] %}
+				{% else %}
+					{{ skel["content"] }}
+				{% endif %}
+			</div>
+		</article>
+
+		{% if skel["parallax" % sect] %}
+			<div class="paralax" style="background-image:url({{ skel["parallax"]["servingurl"] }}=s1600)"></div>
+		{% endif %}
+	</section>
+{% endblock %}

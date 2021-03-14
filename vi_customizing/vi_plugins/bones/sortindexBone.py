@@ -5,6 +5,12 @@ from priorityqueue import viewDelegateSelector
 from widgets.table import DataTable
 from time import time
 
+try:
+	from vi_plugins.dynatable import DynaTable
+except:
+	DynaTable = None
+
+
 class SortIndexControl(html5.Div):
 	def __init__(self, module, data, *args, **kwargs):
 		super(SortIndexControl, self).__init__()
@@ -15,7 +21,7 @@ class SortIndexControl(html5.Div):
 		self.module = module
 		self.data = data
 
-	#self.appendChild(data["sortindex"])
+		#self.appendChild(data["sortindex"])
 
 	def onAttach(self):
 		super(SortIndexControl, self).onAttach()
@@ -32,7 +38,7 @@ class SortIndexControl(html5.Div):
 		except:
 			table = None
 
-		if table and not isinstance(table, DataTable):
+		if table and DynaTable and not (isinstance(table, DataTable) or isinstance(table, DynaTable)):
 			table = None
 
 		return table
@@ -78,9 +84,15 @@ class SortIndexControl(html5.Div):
 			return
 
 		table = self.getDataTable()
+
+		if DynaTable and isinstance(table, DynaTable):
+			data = table.data
+		else:
+			data = table._model
+
 		src = srcIdx = None
 
-		for idx, row in enumerate(table._model):
+		for idx, row in enumerate(data):
 			if row["key"] == srcKey:
 				src = row
 				srcIdx = idx
@@ -88,34 +100,34 @@ class SortIndexControl(html5.Div):
 
 		assert src is not None
 
-		if self.data is table._model[-1]:
-			print("DROP TO LAST", self.data["sortindex"])
-			sortindex = time() + self.data["sortindex"]
-		elif self.data is table._model[0]:
-			print("DROP TO FIRST", self.data["sortindex"])
-			sortindex = self.data["sortindex"]
+		if self.data is data[-1]:
+			print("DROP TO LAST", self.data.get("sortindex") or 0)
+			sortindex = time() + (self.data.get("sortindex") or 0)
+		elif self.data is data[0]:
+			print("DROP TO FIRST", (self.data.get("sortindex") or 0))
+			sortindex = self.data.get("sortindex") or 0
 		else:
-			if srcIdx < table._model.index(self.data):
+			if srcIdx < data.index(self.data):
 				idx = -1
 			else:
 				idx = 1
 
-			print("DROP INSIDE", self.data["sortindex"])
+			print("DROP INSIDE", self.data.get("sortindex") or 0)
 
-			sortindex = table._model[table._model.index(self.data) - idx]["sortindex"] + self.data["sortindex"]
+			sortindex = (data[data.index(self.data) - idx].get("sortindex") or 0) + (self.data.get("sortindex") or 0)
 
 		print("sortindex", sortindex)
 
-		self.setIndex(sortindex / 2.0, srcKey, table._model.index(src), table._model.index(self.data))
+		self.setIndex(sortindex / 2.0, srcKey, data.index(src), data.index(self.data))
 
 	def setIndex(self, index, key, src, dst):
 		print("setIndex", key, index)
 
 		req = NetworkService.request(self.module, "setSortIndex",
-									 params={"key": key, "index": str(index)},
-									 successHandler=self.setIndexSuccess,
-									 secure=True,
-									 kickoff=False)
+				                        params={"key": key, "index": str(index)},
+				                        successHandler=self.setIndexSuccess,
+				                        secure=True,
+				                        kickoff=False)
 		req.src = src
 		req.dst = dst
 
@@ -126,8 +138,15 @@ class SortIndexControl(html5.Div):
 
 		if answ["action"] == "setSortIndexSuccess":
 			table = self.getDataTable()
-			table._model[req.src]["sortindex"] = float(answ["values"]["sortindex"])
-			print("retrieved new sortindex", table._model[req.src]["sortindex"])
+
+			if DynaTable and isinstance(table, DynaTable):
+				data = table.data
+			else:
+				data = table._model
+
+			data[req.src]["sortindex"] = float(answ["values"]["sortindex"])
+
+			print("retrieved new sortindex", data[req.src]["sortindex"])
 
 			self.switchRows(req.src, req.dst)
 
@@ -136,6 +155,10 @@ class SortIndexControl(html5.Div):
 			return
 
 		table = self.getDataTable()
+
+		if DynaTable and isinstance(table, DynaTable):
+			table.reload()
+			return
 
 		#print("src = %d" % src)
 		#print("dst = %d" % dst)
@@ -146,28 +169,28 @@ class SortIndexControl(html5.Div):
 		assert srcTr and dstTr
 
 		#print(srcTr, dstTr)
-
-		data = table._model[src]
+		data = table._model
+		entry = data[src]
 
 		if src < dst:
 			dstTr = table.table.getTrByIndex(dst + 1)
 			if dstTr is None:
 				table.table.body.appendChild(srcTr)
 
-				table._model.remove(data)
-				table._model.append(data)
+				data.remove(entry)
+				data.append(entry)
 
 			else:
 				table.table.body.insertBefore(srcTr, dstTr)
 
-				table._model.remove(data)
-				table._model.insert(dst + 1, data)
+				data.remove(entry)
+				data.insert(dst + 1, entry)
 
 		else:
 			table.table.body.insertBefore(srcTr, dstTr)
 
-			table._model.remove(data)
-			table._model.insert(dst, data)
+			data.remove(entry)
+			data.insert(dst, entry)
 
 
 class SortIndexViewBoneDelegate(object):
@@ -181,9 +204,7 @@ class SortIndexViewBoneDelegate(object):
 		return SortIndexControl(self.moduleName, data)
 
 	@staticmethod
-	def checkFor(moduleName, boneName, skelStructure, *args, **kwargs):
-		print(boneName == "sortindex")
+	def checkFor(moduleName, boneName, skelStucture, *args, **kwargs):
 		return boneName == "sortindex"
 
-viewDelegateSelector.insert(10, SortIndexViewBoneDelegate.checkFor, SortIndexViewBoneDelegate)
-
+viewDelegateSelector.insert(5, SortIndexViewBoneDelegate.checkFor, SortIndexViewBoneDelegate)

@@ -37,20 +37,6 @@ conf["viur.forceSSL"] = True
 #conf["viur.importPassword"] = "xxx"
 
 # ------------------------------------------------------------------------------
-# Project configuration
-#
-
-conf["sections"] = [
-	"start",
-	"news",
-	"glasfluegel",
-	"buch",
-	"verein",
-	"register",
-	"kontakt"
-]
-
-# ------------------------------------------------------------------------------
 # Language-specific configuration
 #
 

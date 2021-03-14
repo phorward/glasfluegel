@@ -47,59 +47,34 @@
 </head>
 <body lang="de">
 {%- set appconf = getEntry("appconf") -%}
-{%- set sections = getConf("sections") -%}
+{%- set pages = getList("page") %}
 
 <header class="mainnavigation">
 	<nav>
 		<ul>
-			<li class="logo"><a href="#start">&nbsp;</a></li>
-            {% for sect in sections %}
-                {% if appconf["%s_active" % sect] %}
-                    <li><a href="#{{ sect }}">{{ appconf["%s_menuname" % sect] }}</a></li>
-                {% endif %}
+			<li class="logo"><a href="/">&nbsp;</a></li>
+            {% for page in pages[1:] %}
+				<li><a href="/{{ page["alias"]|lower }}" class="{{ "active" if page["key"] == skel["key"] }}">{{ page["name"] }}</a></li>
             {% endfor %}
 		</ul>
 	</nav>
 </header>
 
 <div class="content">
-    {% for sect in sections %}
-        {% if appconf["%s_active" % sect] %}
-            <section id="{{ sect }}" class="{{ sect }}">
-				<a name="{{ sect }}"></a>
-                <article>
-                    <h1>{{ appconf["%s_headline" % sect] }}</h1>
+	{% block content %}
 
-                    {% if sect == "start" %}
-                    <div class="logo"></div>
-                    {% endif %}
-
-                    <div class="text">
-						{% if appconf["%s_static" % sect] %}
-                        	{% include "content-%s.html" % sect %}
-						{% else %}
-							{{ appconf["%s_content" % sect] }}
-						{% endif %}
-                    </div>
-                </article>
-
-                {% if appconf["%s_paralax" % sect] %}
-                <div class="paralax" style="background-image:url({{ appconf["%s_paralax" % sect]["servingurl"] }}=s1600)">
-
-                </div>
-                {% endif %}
-
-            </section><!-- {{ sect }} -->
-        {% endif %}
-    {% endfor %}
+	{% endblock %}
 </div>
 
 <footer>
-	<ul>
-        {% for sect in sections %}
-            <li><a href="#{{ sect }}">{{ appconf["%s_menuname" % sect] }}</a></li>
-        {% endfor %}
-	</ul>
+	<div>
+		<ul>
+			{% for page in pages %}
+				<li><a href="/{{ page["alias"]|lower if not loop.first }}">{{ page["name"] }}</a></li>
+			{% endfor %}
+		</ul>
+		<!-- <strong>&copy; Glasflügel Förderverein</strong> -->
+	</div>
 </footer>
 
 <script src="/static/js/lightbox.min.js"></script>
