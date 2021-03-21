@@ -52,7 +52,7 @@
 <header class="mainnavigation">
 	<nav>
 		<ul>
-			<li class="logo"><a href="/">&nbsp;</a></li>
+			<li class="logo"><a href="/"></a></li>
             {% for page in pages[1:] %}
 				<li><a href="/{{ page["alias"]|lower }}" class="{{ "active" if page["key"] == skel["key"] }}">{{ page["name"] }}</a></li>
             {% endfor %}
@@ -68,12 +68,12 @@
 
 <footer>
 	<div>
+		<div class="copyright">&copy; 2016-{{ dateTime().now().strftime("%Y") }} Glasflügel Förderverein</div>
 		<ul>
 			{% for page in pages %}
 				<li><a href="/{{ page["alias"]|lower if not loop.first }}">{{ page["name"] }}</a></li>
 			{% endfor %}
 		</ul>
-		<!-- <strong>&copy; Glasflügel Förderverein</strong> -->
 	</div>
 </footer>
 

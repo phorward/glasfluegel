@@ -16,9 +16,8 @@ class page(SortedList):
 	}
 
 	def listFilter(self, query):
-		query = super(page, self).listFilter(query)
-		if not query:
-			return query
+		if not query.getOrders():
+			query.order("sortindex")
 
 		if isinstance(self.render, HtmlRenderer):
 			query.filter("online", True)

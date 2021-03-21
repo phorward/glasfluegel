@@ -30,8 +30,7 @@ body {
   background: #fafafa;
   overflow-y: scroll;
   overflow-x: hidden;
-  font-size: 100.01%;
-  line-height: 1.5;
+  line-height: 1.75em;
   color: #5c5c5c;
   font-family: 'Source Sans Pro', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -88,7 +87,6 @@ h4 {
 }
 p {
   margin-top: 0;
-  line-height: 1.6;
   -moz-hyphens: auto;
   -o-hyphens: auto;
   -webkit-hyphens: auto;
@@ -142,7 +140,32 @@ h2.news-entry {
 }
 div.content {
   padding-top: 40px;
-  font-size: 1.1em;
+  font-size: 1.2em;
+}
+div.content ul {
+  padding-left: 25px;
+}
+div.content .viur-txt-img {
+  border-radius: 5px;
+  width: 100%;
+  max-height: 42vh;
+  object-fit: cover;
+}
+div.content .viur-txt-float--left {
+  float: left;
+  margin-right: 10px;
+}
+div.content .viur-txt-float--right {
+  float: right;
+  margin-left: 10px;
+}
+div.content .viur-txt-img--half {
+  width: 50%;
+  max-height: unset;
+}
+div.content .viur-txt-img--quarter {
+  width: 25%;
+  max-height: unset;
 }
 section {
   width: 100%;
@@ -170,7 +193,7 @@ div.text p.bigger {
   font-weight: bold;
   margin-left: 25px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 table.airportinfo {
   width: 70%;
@@ -359,7 +382,10 @@ div.formsuccess {
   float: left;
 }
 .mainnavigation nav li a {
-  padding: 12px 25px;
+  height: 80px;
+  line-height: 80px;
+  vertical-align: middle;
+  padding: 0px 25px;
   display: block;
   border-right: 1px solid #f6b8ac;
 }
@@ -373,23 +399,21 @@ div.formsuccess {
   border-left: 1px solid #f6b8ac;
 }
 .mainnavigation nav li:hover a,
-.mainnavigation nav li:focus a,
-.mainnavigation nav li:active a {
+.mainnavigation nav .mainnavigation nav li:focus a,
+.mainnavigation nav .mainnavigation nav li:active a {
   color: #ec6a50;
   background-color: #fff;
 }
-.mainnavigation .logo a {
-  background: url(../images/glasfluegel_logo.svg);
-  display: block;
-  padding: 0;
-  height: 48px;
-  background-size: contain;
+.mainnavigation nav .logo {
+  width: 80px;
+  overflow: hidden;
+}
+.mainnavigation nav .logo a {
+  background-image: url(../images/glasfluegel_logo.svg);
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-.mainnavigation .logo {
-  width: 95px;
-  overflow: hidden;
+  padding: 0;
 }
 /*
     SITESTRUCTURE
@@ -832,46 +856,27 @@ footer a:link,
 footer a:visited {
   color: #101854;
 }
-footer div {
+footer > div {
   margin: 0px auto;
   max-width: 1200px;
   padding: 20px 0;
 }
+footer > div .copyright {
+  float: right;
+}
 /* #Custom Styles
 ================================================== */
-a.sponsor {
-  transition: all 0.5s ease;
-  display: inline-block;
-  width: 150px;
-  height: 80px;
-  margin: 2px 5px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-a.sponsor:hover {
-  transition: all 0.5s ease;
-  display: inline-block;
-  width: 180px;
-  height: 100px;
-}
 /* #Supersize Subset Menu
 ================================================== */
 /* #Media Queries */
 /* disable background-attachment: fixed on iOS devices */
 @media only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
   .paralax {
-    background-attachment: scroll!important;
+    background-attachment: scroll !important;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
-  }
-}
-@media screen and (max-height: 710px) {
-  .mainnavigation nav li a {
-    padding: 12px 10px;
-    font-size: 0.9em;
   }
 }
 /* #Tablet (Landscape)
@@ -879,6 +884,14 @@ a.sponsor:hover {
 /* #Tablet (Portrait)
 ================================================== */
 @media only screen and (max-width: 959px) {
+  .mainnavigation nav li a {
+    padding: 0px 5px;
+    height: 40px;
+    line-height: 40px;
+  }
+  .mainnavigation nav .logo {
+    width: 40px;
+  }
   body {
     font-size: 90%;
   }
@@ -907,7 +920,7 @@ a.sponsor:hover {
   }
   footer .columns li {
     float: none;
-    width: 94%!important;
+    width: 94% !important;
   }
   .boxes.text {
     -webkit-column-count: 1;
@@ -920,7 +933,7 @@ a.sponsor:hover {
     padding: 0;
   }
   .paralax {
-    background-attachment: scroll!important;
+    background-attachment: scroll !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -1,0 +1,9 @@
+{% set skellist = getList("news", **{"amount": 20, "active":"1", "orderby": "creationdate", "orderdir":"1"}) or [] %}
+
+<p>In diesem Bereich gibt es aktuelle Neuigkeiten zum Verein, zu Events und sonstigen Themen mit Bezug auf Glasflügel.</p>
+
+{%- include "news_list_next.html" -%}
+
+{% if skellist|length == 20 %}
+	<a href="#" id="news-all" data-cursor="{{ skellist.cursor }}">Weitere Einträge anzeigen...</a>
+{% endif %}

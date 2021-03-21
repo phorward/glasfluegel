@@ -37,25 +37,6 @@ indexes:
   - name: online
   - name: sortindex
 
-- kind: reg
-  properties:
-  - name: aircraft
-  - name: aircraft_ignore
-  - name: visible
-  - name: creationdate
-    direction: desc
-
-- kind: reg
-  properties:
-  - name: visible
-  - name: creationdate
-    direction: desc
-
-- kind: sponsor
-  properties:
-  - name: active
-  - name: sortindex
-
 - kind: user
   properties:
   - name: contact

@@ -3,11 +3,7 @@
 {% block content %}
 	<section id="{{ skel["alias"] }}" class="{{ skel["alias"] }}">
 		<article>
-			<h1>{{ skel["name"] }}</h1>
-
-			{% if skel["alias"] == "start" %} {# fixme: This is Bullshit! #}
-			<div class="logo"></div>
-			{% endif %}
+			<h1>{{ skel["title"] or skel["name"] }}</h1>
 
 			<div class="text">
 				{% if skel["static"] %}

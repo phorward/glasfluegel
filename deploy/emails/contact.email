@@ -1,10 +1,21 @@
-Subject:Kontaktanfrage Glasflügel-Cup 2019
+Subject:Kontaktanfrage
 <html>
+<head><TITLE>Kontaktanfrage</TITLE></head>
 <body>
-	<p>Hallo!</p>
+Das Kontaktformular wurde ausgefüllt.<br/>
+<br/>
+Name: <strong>{{ skel.name }}</strong><br/>
+{% if skel.email %}
+    E-Mail: <strong>{{ skel.email }}</strong><br/>
+{% endif %}
+{% if skel.phone %}
+    Telefon: <strong>{{ skel.phone }}</strong><br/>
+{% endif %}
 
-	<p>Es wurde eine neue Kontaktanfrage von <a href="mailto:{{ skel["email"] }}">{{ skel["email"] }}</a> gestellt:</p>
-	<pre style="font-size: 15pt;">{{ skel["descr"] }}</pre>
-
+<br/>
+<strong>Nachricht</strong><br/>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -<br/>
+{{ skel.message|replace("\r\n", "\n")|replace("\r", "\n")|replace("\n", "<br>") }}<br>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 </body>
 </html>

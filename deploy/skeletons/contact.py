@@ -1,11 +1,24 @@
 # -*- coding: utf-8 -*-
-from server.skeleton import Skeleton
 from server.bones import *
+from server.skeleton import Skeleton
 
 class contactSkel(Skeleton):
 	key = None
 
-	email= emailBone(descr="E-Mail", required=True)
-	descr = textBone(descr="Nachricht", required=True)
+	name = stringBone(
+		descr="Dein Name",
+		required=True
+	)
+	email = emailBone(
+		descr="Deine E-Mail Adresse",
+		required=True
+	)
+	message = textBone(
+		descr="Deine Nachricht",
+		required=True,
+		validHtml=None
+	)
 
-	privacy_confirm = booleanBone(descr=u"Ich bin damit einverstanden, dass meine angegebenen Daten zum Zwecke der Bearbeitung der Anfrage gespeichert und weiterverarbeitet werden dürfen. Eine Übermittlung meiner Daten an Dritte findet nicht statt.", required=True)
+	privacy_confirm = booleanBone(
+		descr=u"privacy_confirm", required=True
+	)

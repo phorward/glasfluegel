@@ -1,51 +1,27 @@
 # -*- coding: utf-8 -*-
+from server import conf
 from server.modules.formmailer import Formmailer
 from skeletons.contact import contactSkel
-from server import conf, exposed, utils, securitykey, errors
-from server.bones import baseBone
 
-
-class contact(Formmailer):
-	mailSkel = contactSkel
+class Contact(Formmailer):
 	mailTemplate = "contact"
 
 	def canUse(self):
 		return True
 
-	def getRcpts(self, skel):
+	def getRcpts(self,  skel):
 		appconf = conf["viur.mainApp"].appconf.getContents()
-		assert appconf and appconf["recipients"]
+		assert appconf and appconf["contact_rcpts"]
 
-		return appconf["recipients"]
+		return appconf["contact_rcpts"]
 
-	@exposed
-	def index(self, *args, **kwargs):
-		if not self.canUse():
-			raise errors.HTTPError(401)  # Unauthorized
+	def mailSkel(self):
+		return contactSkel()
 
-		skel = self.mailSkel()
+	def getOptions(self, skel):
+		return {
+			"replyTo": skel["email"]
+		}
 
-		if len(kwargs) == 0:
-			return self.render.add(skel=skel, failed=False)
-
-		if not skel.fromClient(kwargs) or not "skey" in kwargs.keys():
-			return self.render.add(skel=skel, failed=True)
-
-		if not securitykey.validate(kwargs["skey"]):
-			raise errors.PreconditionFailed()
-
-		# Allow bones to perform outstanding "magic" operations before sending the mail
-		for key, _bone in skel.items():
-			if isinstance(_bone, baseBone):
-				_bone.performMagic(skel.valuesCache, key, isAdd=True)
-
-		rcpts = self.getRcpts(skel)
-
-		utils.sendEMail(rcpts, self.mailTemplate, skel)
-		self.onItemAdded(skel)
-
-		return self.render.addItemSuccess(skel)
-
-
-contact.json = True
-contact.internalExposed = True
+Contact.html = True
+Contact.json = True

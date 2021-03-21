@@ -402,24 +402,5 @@ $(document).ready(function () {
 			return false;
 		}
 	);
-
-	// Cookie consent
-	window.addEventListener("load", function(){
-	window.cookieconsent.initialise({
-	  "palette": {
-	    "popup": {
-	      "background": "#000"
-	    },
-	    "button": {
-	      "background": "#ec6a50"
-	    }
-	  },
-	  "theme": "classic",
-	  "content": {
-	    "message": "Diese Webseite verwendet Cookies zur Verbesserung der Benutzererfahrung.",
-	    "dismiss": "Alles klar!"
-	  }
-	})});
-
 });
 

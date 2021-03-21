@@ -15,7 +15,7 @@ class pageSkel(Skeleton):
 	)
 
 	online = booleanBone(
-		descr=u"Aktiv",
+		descr=u"Online",
 		indexed=True,
 		defaultValue=True
 	)
@@ -33,27 +33,17 @@ class pageSkel(Skeleton):
 		required=True
 	)
 
+	title = stringBone(
+		descr=u"Titel"
+	)
+
 	static = booleanBone(
 		descr=u"Statisches Template 'content-<alias>.html' verwenden",
 		defaultValue=False
 	)
 
-	title = stringBone(
-		descr=u"Titel",
-		params={
-			"logic.visibleIf": "not static"
-		}
-	)
-
 	content = textBone(
 		descr=u"Inhalt",
-		params={
-			"logic.visibleIf": "not static"
-		}
-	)
-
-	parallax = fileBone(
-		descr=u"Parallax",
 		params={
 			"logic.visibleIf": "not static"
 		}

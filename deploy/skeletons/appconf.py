@@ -3,8 +3,9 @@ from server.bones import *
 from server.skeleton import Skeleton
 
 class appconfSkel(Skeleton):
-	recipients = stringBone(
-		descr=u"E-Mail-Empfänger",
-		multiple=True,
+	# Formmailer
+	contact_rcpts = emailBone(
+		descr=u"Empfänger für Kontaktanfrage",
+		params={"category": "Formmailer"},
 		required=True
 	)

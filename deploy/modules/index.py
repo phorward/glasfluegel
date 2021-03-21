@@ -14,7 +14,7 @@ class index(default):
 		if alias:
 			q.filter("alias.idx", alias.lower())
 
-		key = q.run(keysOnly=True)
+		key = q.run(keysOnly=True, limit=1)
 		if not key:
 			raise errors.NotFound()
 
